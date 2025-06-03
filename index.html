@@ -2,53 +2,104 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Terminal Portfolio - Nishu Kumar</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nishu Kumar | DevOps Engineer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Fira Code', monospace;
+      background-color: #0f0f0f;
+      color: #33ff33;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      color: #00ff88;
+      margin-bottom: 20px;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    a {
+      color: #33ff33;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #00ff00;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 15px;
+    }
+
+    ul li::before {
+      content: '> ';
+      color: #00ff88;
+    }
+
+    .highlight {
+      color: #00ffaa;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 20px 10px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="terminal">
-    <div class="output">
-      <pre>
-  _______ _ _ _           
- |__ __| | | (_) | |          
-    | |_ __ ___ __ _| |_ ___ _ __ _ __ _| |__ _ _ 
-    | | '__/ _ \/ _` | __/ _ \| '__| |/ _` | '_ \| | | |
-    | | | | __/ (_| | || (_) | | | | (_| | | | | |_| |
-    |_|_| \___|\__,_|\__\___/|_| |_|\__, |_| |_|\__, |
-                                       __/ | __/ |
-                                      |___/ |___/ 
-      </pre>
+  <div class="container">
+    <header>
+      <h1>> Hello, I'm <span class="highlight">Nishu Kumar</span></h1>
+      <p>A passionate <strong>DevOps Engineer</strong> and <strong>Cloud Specialist</strong>.</p>
+    </header>
 
-      <p class="command">> hello</p>
-      <p>Welcome to Your Name's terminal portfolio.</p>
-      
-      <p class="command">> whoami</p>
-      <p>A passionate DevOps and Cloud engineer.</p>
-
-      <p class="command">> skills</p>
+    <section>
+      <h2>> Skills</h2>
       <ul>
-        <li>Azure, AWS, Terraform</li>
-        <li>CI/CD, Linux</li>
-        <li>Kubernets, Docker</li>
+        <li>DevOps</li>
+        <li>Cloud Computing (Azure, AWS)</li>
+        <li>Docker & Kubernetes</li>
+        <li>Infrastructure as Code (Terraform)</li>
+        <li>CI/CD Pipelines</li>
+        <li>Linux & Shell Scripting</li>
       </ul>
+    </section>
 
-      <p class="command">> projects</p>
+    <section>
+      <h2>> Projects</h2>
       <ul>
-        <li><a href="#">🗂 Project 1 - Personal Blog</a></li>
-        <li><a href="#">📊 Project 2 - Task Tracker</a></li>
-        <li><a href="#">📱 Project 3 - Mobile Weather App</a></li>
+        <li><a href="#">🛠 CI/CD Pipeline Setup for Microservices</a></li>
+        <li><a href="#">☁️ Multi-Cloud Architecture with Azure & AWS</a></li>
+        <li><a href="#">📦 Kubernetes Deployment Automation</a></li>
       </ul>
+    </section>
 
-      <p class="command">> contact</p>
+    <section>
+      <h2>> Contact</h2>
       <ul>
-        <li>Email: <a href="mailto:chauhannishu00@gmail.com">your.email@example.com</a></li>
-        <li>GitHub: <a href="https://github.com/nishu-kumar7500" target="_blank">github.com/yourusername</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/nishu-kumar-4b5012107/" target="_blank">linkedin.com/in/yourusername</a></li>
+        <li>Email: <a href="mailto:chauhannishu00@gmail.com">nishu@example.com</a></li>
+        <li>GitHub: <a href="https://github.com/nishu-kumar7500" target="_blank">github.com/nishukumar</a></li>
+        <li>LinkedIn: <a href="https://linkedin.com/in/nishukumar" target="_blank">linkedin.com/in/nishukumar</a></li>
       </ul>
-
-      <p class="command">> _</p>
-    </div>
+    </section>
   </div>
 </body>
 </html>
