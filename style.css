@@ -1,0 +1,59 @@
+body {
+    background-color: #000;
+    color: #33ff33;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .terminal {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #111;
+    border: 1px solid #33ff33;
+    box-shadow: 0 0 10px #33ff33;
+    border-radius: 10px;
+  }
+  
+  .output {
+    white-space: pre-wrap;
+    line-height: 1.5;
+  }
+  
+  .command {
+    color: #33ff33;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  ul li::before {
+    content: "> ";
+    color: #33ff33;
+    margin-right: 5px;
+  }
+  
+  a {
+    color: #33ff33;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: #00ff00;
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .command:last-of-type::after {
+    content: "█";
+    animation: blink 1s infinite;
+  }
+  
