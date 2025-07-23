@@ -1,157 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nishu Kumar | DevOps Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
-      color: #333;
-      padding: 40px 20px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      background-color: white;
-      padding: 40px;
-      border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .profile-pic {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 20px;
-      border: 4px solid #00bfa5;
-    }
-
-    h1 {
-      font-size: 2.5em;
-      color: #00796b;
-    }
-
-    h1 .highlight {
-      color: #00bfa5;
-    }
-
-    p {
-      font-size: 1.2em;
-      color: #555;
-    }
-
-    section {
-      margin-bottom: 40px;
-    }
-
-    h2 {
-      font-size: 1.8em;
-      color: #009688;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #00bfa5;
-      padding-bottom: 5px;
-    }
-
-    ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul li {
-      background: #f9f9f9;
-      padding: 12px 16px;
-      margin: 10px 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      transition: background 0.3s ease;
-    }
-
-    ul li:hover {
-      background: #e0f2f1;
-    }
-
-    a {
-      color: #00695c;
-      font-weight: 500;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      color: #004d40;
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        padding: 20px;
-      }
-
-      .profile-pic {
-        width: 120px;
-        height: 120px;
-      }
-
-      h1 {
-        font-size: 2em;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nature Explorer | Animals & Forests</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .card-hover-effect {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover-effect:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .parallax-bg {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .tab-button.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
 </head>
-<body>
-  <div class="container">
-    <header>
-      <img src="IMG_20250310_180025_926.png" alt="Nishu Kumar" class="profile-pic">
-      <h1>Hello, I'm <span class="highlight">Nishu Kumar</span></h1>
-      <p>A passionate <strong>DevOps Engineer</strong> and <strong>Cloud Specialist</strong>.</p>
-    </header>
+<body class="antialiased">
 
-    <section>
-      <h2>Skills</h2>
-      <ul>
-        <li>DevOps</li>
-        <li>Cloud Computing (Azure, AWS)</li>
-        <li>Docker & Kubernetes</li>
-        <li>Infrastructure as Code (Terraform)</li>
-        <li>CI/CD Pipelines</li>
-        <li>Linux</li>
-        <li>PowerShell Scripting</li>
-      </ul>
-    </section>
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 opacity-70"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')] opacity-10 bg-cover bg-center"></div>
+    </div>
 
-    <section>
-      <h2>Projects</h2>
-      <ul>
-        <li><a href="#">🛠 CI/CD Pipeline Setup for Microservices</a></li>
-        <li><a href="#">☁️ Multi-Cloud Architecture with Azure & AWS</a></li>
-        <li><a href="#">📦 Kubernetes Deployment Automation</a></li>
-      </ul>
-    </section>
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <!-- Header with Floating Animation -->
+        <header class="text-center mb-12 relative">
+            <div class="floating inline-block">
+                <i class="fas fa-leaf text-5xl text-green-500 mb-4"></i>
+            </div>
+            <h1 class="text-5xl font-bold mb-4 gradient-text">Nature Explorer</h1>
+            <p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover the breathtaking beauty of Earth's wildlife and forests through stunning visuals and fascinating facts</p>
+        </header>
 
-    <section>
-      <h2>Contact</h2>
-      <ul>
-        <li>Mobile: <a href="+91-9891804937">+91-9891804937</a></li>
-        <li>Email: <a href="mailto:chauhannishu00@gmail.com">chauhannishu00@gmail.com</a></li>
-        <li>GitHub: <a href="https://github.com/nishu-kumar7500" target="_blank">github.com/nishu-kumar7500</a></li>
-        <li>LinkedIn: <a href="https://www.linkedin.com/in/nishu-kumar-4b5012107/" target="_blank">linkedin.com/in/nishu-kumar-4b5012107</a></li>
-      </ul>
-    </section>
-  </div>
+        <!-- Tab Navigation -->
+        <div class="flex justify-center mb-12">
+            <div class="glass-effect rounded-full p-1 shadow-lg">
+                <div class="flex space-x-1">
+                    <button id="animal-tab-button" class="tab-button px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 ease-in-out bg-white/30 text-gray-700 hover:bg-white/50 active">
+                        <i class="fas fa-paw mr-2"></i> Animals
+                    </button>
+                    <button id="forest-tab-button" class="tab-button px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 ease-in-out bg-white/30 text-gray-700 hover:bg-white/50">
+                        <i class="fas fa-tree mr-2"></i> Forests
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="relative">
+            <!-- Animal Tab Content -->
+            <div id="animal-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                <!-- Lion -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.pixabay.com/photo/2014/11/03/11/07/lion-515028_1280.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Lion+Image+Failed';"
+                             alt="Lion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Lion</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white text-sm ml-2">4.8</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The lion is a large, carnivorous feline of the genus Panthera, native to Africa and India.
+                                    Known for its majestic mane (males) and powerful roar.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-globe-africa mr-2"></i>
+                                    <span>Africa & India</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            <i class="fas fa-binoculars mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tiger -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.pixabay.com/photo/2023/11/03/19/59/malaysian-tiger-8363779_1280.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Tiger+Image+Failed';"
+                             alt="Tiger" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Tiger</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The tiger is the largest living cat species and a member of the genus Panthera.
+                                    It is most recognizable for its dark vertical stripes.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-globe-asia mr-2"></i>
+                                    <span>Asia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            <i class="fas fa-binoculars mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Elephant -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.pixabay.com/photo/2024/06/27/15/36/animal-8857572_1280.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Elephant+Image+Failed';"
+                             alt="Elephant" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Elephant</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Elephants are the largest land animals, characterized by their long trunks, large ears,
+                                    and tusks. They are highly intelligent and social creatures.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-globe-africa mr-2"></i>
+                                    <span>Africa & Asia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            <i class="fas fa-binoculars mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dog -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.pixabay.com/photo/2018/05/07/10/49/husky-3380550_1280.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Dog+Image+Failed';"
+                             alt="Dog" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Dog</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Dogs are domesticated mammals, famous for their loyalty and companionship.
+                                    They come in a vast array of breeds, each with unique characteristics.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-globe mr-2"></i>
+                                    <span>Worldwide</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            <i class="fas fa-binoculars mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jaguar -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://cdn.pixabay.com/photo/2016/10/10/00/09/jaguar-1727406_1280.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Jaguar+Image+Failed';"
+                             alt="Jaguar" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Jaguar</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white text-sm ml-2">4.7</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The jaguar is a large feline species native to the Americas. It is the third-largest
+                                    cat after the tiger and lion, known for its distinctive rosette spots.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-globe-americas mr-2"></i>
+                                    <span>Americas</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all">
+                            <i class="fas fa-binoculars mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Forest Tab Content -->
+            <div id="forest-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                <!-- Amazon Rainforest -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://wallpaperbat.com/img/253658-amazon-rainforest-wallpaper.jpg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Amazon+Image+Failed';"
+                             alt="Amazon Rainforest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Amazon Rainforest</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The Amazon Rainforest is the largest rainforest in the world, spanning across
+                                    several South American countries. It is home to incredible biodiversity.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>South America</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all">
+                            <i class="fas fa-hiking mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Congo Rainforest -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://th.bing.com/th/id/OIP.mr5qa3Zb0kLUiDkUHORAsgHaEK?w=304&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Congo+Image+Failed';"
+                             alt="Congo Rainforest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Congo Rainforest</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <span class="text-white text-sm ml-2">4.6</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The Congo Rainforest is the second-largest rainforest globally, located in Central Africa.
+                                    It is vital for global climate regulation and rich in wildlife.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>Central Africa</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all">
+                            <i class="fas fa-hiking mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Taiga (Boreal Forest) -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/338936/pexels-photo-338936.jpeg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Taiga+Image+Failed';"
+                             alt="Taiga Forest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Taiga (Boreal Forest)</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    The Taiga, or Boreal Forest, is the world's largest land biome, stretching across
+                                    North America and Eurasia. It is characterized by coniferous forests.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>Northern Hemisphere</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all">
+                            <i class="fas fa-hiking mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Valdivian Temperate Rainforest -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Valdivian+Image+Failed';"
+                             alt="Valdivian Rainforest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Valdivian Temperate Rainforest</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    This unique temperate rainforest is found along the coast of Chile and Argentina.
+                                    It is known for its dense undergrowth and ancient trees.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>Chile & Argentina</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all">
+                            <i class="fas fa-hiking mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daintree Rainforest -->
+                <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-xl relative group">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://th.bing.com/th/id/OIP.X_QdBUWrSOMSevHhH4gwcgHaEM?w=369&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/333333?text=Daintree+Image+Failed';"
+                             alt="Daintree Rainforest" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h2 class="text-2xl font-bold text-white">Daintree Rainforest</h2>
+                            <div class="flex items-center text-yellow-300 mt-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <span class="text-white text-sm ml-2">5.0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-gray-600 text-sm mb-4">
+                                    Located in Queensland, Australia, the Daintree is one of the oldest rainforests
+                                    in the world, known for its unique flora and fauna.
+                                </p>
+                                <div class="flex items-center text-sm text-gray-500">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>Australia</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="mt-4 w-full py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg hover:from-green-600 hover:to-green-700 transition-all">
+                            <i class="fas fa-hiking mr-2"></i> Explore
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-blue-900 to-green-900 text-white py-8 mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-2">Nature Explorer</h3>
+                    <p class="text-blue-200">Discover the wonders of our planet</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-blue-300 transition-colors">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-blue-400 transition-colors">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-pink-500 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-red-400 transition-colors">
+                        <i class="fab fa-youtube text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-6 pt-6 text-center text-blue-200">
+                <p>&copy; 2023 Nature Explorer. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const animalButton = document.getElementById('animal-tab-button');
+            const forestButton = document.getElementById('forest-tab-button');
+            const animalContent = document.getElementById('animal-content');
+            const forestContent = document.getElementById('forest-content');
+
+            // Function to show a specific tab with animation
+            function showTab(tabName) {
+                // Hide all content divs
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                // Deactivate all tab buttons
+                document.querySelectorAll('.tab-button').forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                // Show the selected tab content and activate its button
+                if (tabName === 'animal') {
+                    animalContent.style.display = 'grid';
+                    animalButton.classList.add('active');
+                    animalContent.style.animation = 'fadeIn 0.5s ease-out';
+                } else if (tabName === 'forest') {
+                    forestContent.style.display = 'grid';
+                    forestButton.classList.add('active');
+                    forestContent.style.animation = 'fadeIn 0.5s ease-out';
+                }
+            }
+
+            // Event listeners for tab buttons
+            animalButton.addEventListener('click', () => showTab('animal'));
+            forestButton.addEventListener('click', () => showTab('forest'));
+
+            // Show the Animal tab by default on page load
+            showTab('animal');
+        });
+    </script>
 </body>
 </html>
