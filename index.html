@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nature Explorer | Discover Earth's Wonders</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts - More modern and elegant fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -234,35 +237,63 @@
                 padding: 0.75rem 1.25rem;
                 font-size: 0.9rem;
             }
+            /* Adjusted for very small screens */
             .header-gradient {
-                font-size: 3rem; /* Adjust for smaller screens */
+                font-size: 3rem; /* Default for mobile */
+            }
+            .header-subtitle {
+                font-size: 1rem; /* Default for mobile */
+            }
+        }
+        /* Further fine-tuning for smaller screens */
+        @media (max-width: 640px) { /* Tailwind's sm breakpoint */
+            .header-gradient {
+                font-size: 2.5rem; /* Smaller on very small screens */
+            }
+            .header-subtitle {
+                font-size: 0.9rem; /* Smaller on very small screens */
+            }
+            .tab-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+            .card-buttons-flex {
+                flex-direction: column; /* Stack buttons on very small screens */
+            }
+            .card-buttons-flex > a {
+                width: 100%; /* Full width when stacked */
             }
         }
     </style>
 </head>
 <body class="antialiased">
 
+    <!-- Particle Background -->
     <div class="particles" id="particles"></div>
 
+    <!-- Main Container -->
     <div class="container mx-auto px-4 py-12 max-w-7xl relative z-10">
+        <!-- Header with Glowing Icon and Gradient Text -->
         <header class="text-center mb-16 relative">
             <div class="relative inline-block mb-4 animate-pulse">
                 <i class="fas fa-globe text-7xl text-blue-400 opacity-90 filter drop-shadow-lg"></i>
                 <div class="absolute inset-0 bg-blue-400 rounded-full opacity-20 blur-xl animate-ping"></div>
             </div>
-            <h1 class="text-6xl md:text-7xl font-extrabold mb-4 header-gradient font-montserrat tracking-tight leading-tight">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-4 header-gradient font-montserrat tracking-tight leading-tight">
                 Nature Explorer
             </h1>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed header-subtitle">
                 Embark on a visual journey through Earth's most stunning natural wonders, diverse wildlife, and breathtaking landscapes.
             </p>
             
+            <!-- Dynamic Scroll Down Indicator -->
             <div class="mt-16 animate-bounce text-gray-500">
                 <i class="fas fa-chevron-down text-4xl"></i>
                 <p class="mt-2 text-lg font-medium">Scroll to Discover</p>
             </div>
         </header>
 
+        <!-- Tab Navigation -->
         <div class="flex justify-center mb-16">
             <div class="glass-container inline-flex shadow-2xl">
                 <div class="flex flex-wrap justify-center gap-2 p-2">
@@ -282,10 +313,14 @@
             </div>
         </div>
 
+        <!-- Tab Content -->
         <div class="relative">
+            <!-- Loading indicator -->
             <div id="loading-indicator" class="loader" style="display: none; border-top-color: var(--primary-blue);"></div>
             
+            <!-- Animal Tab Content -->
             <div id="animal-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Lion -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://cdn.pixabay.com/photo/2014/11/03/11/07/lion-515028_1280.jpg"
@@ -307,7 +342,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             <span class="ml-2">4.8 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://www.britannica.com/animal/lion" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -318,6 +353,7 @@
                     </div>
                 </div>
 
+                <!-- Tiger -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://cdn.pixabay.com/photo/2023/11/03/19/59/malaysian-tiger-8363779_1280.jpg"
@@ -339,7 +375,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Tiger" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -350,6 +386,7 @@
                     </div>
                 </div>
 
+                <!-- Elephant -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://cdn.pixabay.com/photo/2024/06/27/15/36/animal-8857572_1280.jpg"
@@ -371,7 +408,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Elephant" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -382,6 +419,7 @@
                     </div>
                 </div>
 
+                <!-- Dog -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://cdn.pixabay.com/photo/2018/05/07/10/49/husky-3380550_1280.jpg"
@@ -403,7 +441,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Dog" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -415,7 +453,9 @@
                 </div>
             </div>
 
+            <!-- Forest Tab Content -->
             <div id="forest-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Amazon Rainforest -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://wallpaperbat.com/img/253658-amazon-rainforest-wallpaper.jpg"
@@ -437,7 +477,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Amazon_rainforest" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
@@ -448,6 +488,7 @@
                     </div>
                 </div>
 
+                <!-- Congo Rainforest -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://th.bing.com/th/id/OIP.mr5qa3Zb0kLUiDkUHORAsgHaEK?w=304&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
@@ -469,7 +510,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             <span class="ml-2">4.6 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Congo_Basin" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
@@ -480,6 +521,7 @@
                     </div>
                 </div>
 
+                <!-- Taiga (Boreal Forest) -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/338936/pexels-photo-338936.jpeg"
@@ -501,7 +543,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Taiga" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
@@ -512,6 +554,7 @@
                     </div>
                 </div>
 
+                <!-- Valdivian Temperate Rainforest -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg"
@@ -533,7 +576,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Valdivian_temperate_forests" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
@@ -545,7 +588,9 @@
                 </div>
             </div>
 
+            <!-- Birds Tab Content -->
             <div id="birds-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Bald Eagle -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/68603/bald-eagle-bird-predator-feathered-68603.jpeg"
@@ -567,7 +612,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Bald_eagle" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -578,6 +623,7 @@
                     </div>
                 </div>
 
+                <!-- Peacock -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/3550969/pexels-photo-3550969.jpeg"
@@ -599,7 +645,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Peafowl" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -610,6 +656,7 @@
                     </div>
                 </div>
 
+                <!-- Hummingbird -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/2629373/pexels-photo-2629373.jpeg"
@@ -631,7 +678,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             <span class="ml-2">4.7 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Hummingbird" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -642,6 +689,7 @@
                     </div>
                 </div>
 
+                <!-- Owl -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/53977/eagle-owl-raptor-falconry-owl-53977.jpeg"
@@ -663,7 +711,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Great_horned_owl" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -675,7 +723,9 @@
                 </div>
             </div>
 
+            <!-- Reptiles Tab Content -->
             <div id="reptiles-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+                <!-- Komodo Dragon -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/8856173/pexels-photo-8856173.jpeg"
@@ -697,7 +747,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Komodo_dragon" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -708,6 +758,7 @@
                     </div>
                 </div>
 
+                <!-- Green Sea Turtle -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/33056279/pexels-photo-33056279.jpeg"
@@ -729,7 +780,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Green_sea_turtle" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -740,6 +791,7 @@
                     </div>
                 </div>
 
+                <!-- Chameleon -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://images.pexels.com/photos/1043130/pexels-photo-1043130.jpeg"
@@ -761,7 +813,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                             <span class="ml-2">4.7 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/Chameleon" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -772,6 +824,7 @@
                     </div>
                 </div>
 
+                <!-- King Cobra -->
                 <div class="card-container group">
                     <div class="relative h-64 overflow-hidden">
                         <img src="https://cdn.britannica.com/68/152568-050-CC92308B/King-cobra-world-snake.jpg?w=300"
@@ -793,7 +846,7 @@
                             <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                             <span class="ml-2">5.0 Rating</span>
                         </div>
-                        <div class="flex gap-3 mt-4">
+                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
                             <a href="https://en.wikipedia.org/wiki/King_cobra" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
@@ -807,6 +860,7 @@
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 py-12 mt-20 relative overflow-hidden">
         <div class="footer-gradient-overlay"></div>
         <div class="container mx-auto px-4 relative z-10">
@@ -856,6 +910,7 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 invisible hover:from-blue-600 hover:to-green-600 z-50">
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
