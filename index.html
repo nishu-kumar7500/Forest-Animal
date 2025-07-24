@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nature Explorer | Animals, Forests, Birds & Reptiles</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -350,18 +347,14 @@
 </head>
 <body class="antialiased">
 
-    <!-- Particle Background -->
     <div class="particles" id="particles"></div>
 
-    <!-- Animated Background -->
     <div class="fixed inset-0 -z-10 overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-green-50 opacity-80"></div>
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80')] opacity-15 bg-cover bg-center"></div>
     </div>
 
-    <!-- Main Container -->
     <div class="container mx-auto px-4 py-8 max-w-7xl">
-        <!-- Header with Floating Animation -->
         <header class="text-center mb-12 relative">
             <div class="floating inline-block">
                 <div class="relative">
@@ -372,7 +365,6 @@
             <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text font-montserrat">Nature Explorer</h1>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">Discover the breathtaking beauty of Earth's wildlife, forests, birds and reptiles through stunning visuals</p>
             
-            <!-- Animated scroll indicator -->
             <div class="mt-12 animate-bounce">
                 <div class="w-8 h-12 border-4 border-blue-500 rounded-full flex justify-center">
                     <div class="w-1 h-3 bg-blue-500 rounded-full mt-2"></div>
@@ -380,7 +372,6 @@
             </div>
         </header>
 
-        <!-- Tab Navigation -->
         <div class="flex justify-center mb-12">
             <div class="glass-effect rounded-xl p-1 shadow-2xl">
                 <div class="flex flex-wrap justify-center gap-1">
@@ -400,14 +391,10 @@
             </div>
         </div>
 
-        <!-- Tab Content -->
         <div class="relative">
-            <!-- Loading indicator -->
             <div id="loading-indicator" class="loader" style="display: none;"></div>
             
-            <!-- Animal Tab Content -->
             <div id="animal-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Lion -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -440,14 +427,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Lion" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.nationalgeographic.com/animals/mammals/facts/lion" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Tiger -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -480,14 +466,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Tiger" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.worldwildlife.org/species/tiger" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Elephant -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -520,14 +505,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Elephant" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.nationalgeographic.com/animals/mammals/facts/african-elephant" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Dog -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -560,7 +544,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Dog" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.akc.org/dog-breeds/" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
@@ -568,9 +552,7 @@
                 </div>
             </div>
 
-            <!-- Forest Tab Content -->
             <div id="forest-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Amazon Rainforest -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -603,14 +585,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Amazon_rainforest" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.amazonconservation.org/amazon-rainforest/" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Congo Rainforest -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -643,14 +624,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Congo_Basin" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.worldwildlife.org/places/congo-basin" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Taiga (Boreal Forest) -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -683,14 +663,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Taiga" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.britannica.com/science/taiga" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Valdivian Temperate Rainforest -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -723,7 +702,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Valdivian_temperate_forests" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.worldwildlife.org/ecoregions/nt0404" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl hover:from-green-600 hover:to-green-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-hiking mr-2"></i> Explore
                             </a>
                         </div>
@@ -731,9 +710,7 @@
                 </div>
             </div>
 
-            <!-- Birds Tab Content -->
             <div id="birds-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Bald Eagle -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -766,14 +743,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Bald_eagle" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.audubon.org/field-guide/bird/bald-eagle" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Peacock -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -806,14 +782,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Peafowl" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://animals.howstuffworks.com/birds/peacock.htm" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Hummingbird -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -846,14 +821,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Hummingbird" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.audubon.org/bird-family/hummingbirds" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Owl -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -886,7 +860,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Great_horned_owl" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.allaboutbirds.org/guide/Great_Horned_Owl/overview" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-xl hover:from-yellow-600 hover:to-yellow-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
@@ -894,9 +868,7 @@
                 </div>
             </div>
 
-            <!-- Reptiles Tab Content -->
             <div id="reptiles-content" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-                <!-- Komodo Dragon -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -929,14 +901,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Komodo_dragon" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.nationalgeographic.com/animals/reptiles/facts/komodo-dragon" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Green Sea Turtle -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -969,14 +940,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Green_sea_turtle" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.worldwildlife.org/species/green-turtle" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Chameleon -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -1009,14 +979,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/Chameleon" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.nationalgeographic.com/animals/reptiles/facts/chameleon" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- King Cobra -->
                 <div class="card-hover-effect bg-white rounded-2xl overflow-hidden shadow-2xl relative group">
                     <div class="card-inner">
                         <div class="relative overflow-hidden h-72">
@@ -1049,7 +1018,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="https://en.wikipedia.org/wiki/King_cobra" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
+                            <a href="https://www.nationalgeographic.com/animals/reptiles/facts/king-cobra" target="_blank" class="mt-4 w-full py-3 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-xl hover:from-purple-600 hover:to-purple-700 transition-all explore-btn flex items-center justify-center ripple">
                                 <i class="fas fa-binoculars mr-2"></i> Explore
                             </a>
                         </div>
@@ -1059,9 +1028,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="bg-gradient-to-r from-blue-900 to-green-900 text-white py-12 mt-16 relative overflow-hidden">
-        <!-- Footer waves -->
         <div class="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-blue-800/30 to-transparent"></div>
         
         <div class="container mx-auto px-4 relative z-10">
@@ -1111,7 +1078,6 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
     <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-300 opacity-0 invisible hover:bg-blue-700">
         <i class="fas fa-arrow-up"></i>
     </button>
