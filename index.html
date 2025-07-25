@@ -1,1068 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature Explorer | Discover Earth's Wonders</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts - More modern and elegant fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-blue: #3b82f6; /* Blue-500 */
-            --primary-blue-dark: #2563eb; /* Blue-600 */
-            --secondary-green: #10b981; /* Green-500 */
-            --secondary-green-dark: #059669; /* Green-600 */
-            --accent-orange: #f59e0b; /* Amber-500 */
-            --accent-orange-dark: #d97706; /* Amber-600 */
-            --accent-purple: #8b5cf6; /* Violet-500 */
-            --accent-purple-dark: #7c3aed; /* Violet-600 */
-            --dark-bg: #1a202c; /* Gray-900 */
-            --light-text: #e2e8f0; /* Gray-200 */
-            --card-bg: rgba(255, 255, 255, 0.08); /* Semi-transparent white for glass effect */
-            --border-color: rgba(255, 255, 255, 0.15);
-        }
-        
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: #0d1117; /* Darker background for depth */
-            color: var(--light-text);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background: linear-gradient(135deg, #0d1117 0%, #1a202c 100%);
-        }
-
-        .header-gradient {
-            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-green), var(--accent-orange), var(--accent-purple));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            animation: gradient-shift 10s ease infinite;
-            background-size: 400% 400%;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-container {
-            background: rgba(255, 255, 255, 0.05); /* Lighter for contrast */
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            border-radius: 1rem;
-            padding: 0.5rem;
-        }
-
-        .tab-button {
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 0.75rem;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .tab-button::before {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: currentColor;
-            transform: scaleX(0);
-            transform-origin: right;
-            transition: transform 0.3s ease;
-        }
-
-        .tab-button.active {
-            color: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transform: translateY(-2px);
-        }
-
-        .tab-button.active::before {
-            transform: scaleX(1);
-            transform-origin: left;
-        }
-
-        #animal-tab-button.active { background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark)); }
-        #forest-tab-button.active { background: linear-gradient(135deg, var(--secondary-green), var(--secondary-green-dark)); }
-        #birds-tab-button.active { background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-dark)); }
-        #reptiles-tab-button.active { background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark)); }
-
-        .card-container {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 1.5rem; /* More rounded */
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .card-container:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.4);
-        }
-
-        .card-image {
-            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .card-container:hover .card-image {
-            transform: scale(1.08);
-            filter: brightness(0.9); /* Slightly darken on hover */
-        }
-
-        .card-content {
-            background: rgba(26, 32, 44, 0.8); /* Darker overlay for text */
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .explore-btn, .learn-more-btn {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .explore-btn::before, .learn-more-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.15); /* Subtle shine effect */
-            transition: all 0.6s ease;
-            z-index: -1;
-            transform: skewX(-20deg);
-        }
-
-        .explore-btn:hover::before, .learn-more-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Ripple effect */
-        .ripple {
-            position: relative;
-            overflow: hidden;
-        }
-        .ripple-effect {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-            pointer-events: none;
-        }
-        @keyframes ripple-animation {
-            to { transform: scale(2.5); opacity: 0; }
-        }
-
-        .back-to-top {
-            background: linear-gradient(45deg, var(--primary-blue), var(--secondary-green));
-            transition: all 0.3s ease;
-        }
-        .back-to-top:hover {
-            opacity: 0.9;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .footer-gradient-overlay {
-            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            pointer-events: none;
-        }
-
-        /* Particle Background */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2; /* Ensure it's behind everything */
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.2); /* Softer white */
-            border-radius: 50%;
-            animation: float-particles linear infinite;
-        }
-        @keyframes float-particles {
-            from { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.5; transform: translateY(50vh) scale(1); }
-            to { transform: translateY(-10vh) scale(0); opacity: 0; }
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #1a202c; /* Dark track */
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(var(--primary-blue), var(--secondary-green));
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(var(--primary-blue-dark), var(--secondary-green-dark));
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .tab-button {
-                padding: 0.75rem 1.25rem;
-                font-size: 0.9rem;
-            }
-            /* Adjusted for very small screens */
-            .header-gradient {
-                font-size: 3rem; /* Default for mobile */
-            }
-            .header-subtitle {
-                font-size: 1rem; /* Default for mobile */
-            }
-        }
-        /* Further fine-tuning for smaller screens */
-        @media (max-width: 640px) { /* Tailwind's sm breakpoint */
-            .header-gradient {
-                font-size: 2.5rem; /* Smaller on very small screens */
-            }
-            .header-subtitle {
-                font-size: 0.9rem; /* Smaller on very small screens */
-            }
-            .tab-button {
-                padding: 0.6rem 1rem;
-                font-size: 0.85rem;
-            }
-            .card-buttons-flex {
-                flex-direction: column; /* Stack buttons on very small screens */
-            }
-            .card-buttons-flex > a {
-                width: 100%; /* Full width when stacked */
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forests and Animals</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body class="antialiased">
+<body class="bg-gray-900 text-white">
 
-    <!-- Particle Background -->
-    <div class="particles" id="particles"></div>
-
-    <!-- Main Container -->
-    <div class="container mx-auto px-4 py-12 max-w-7xl relative z-10">
-        <!-- Header with Glowing Icon and Gradient Text -->
-        <header class="text-center mb-16 relative">
-            <div class="relative inline-block mb-4 animate-pulse">
-                <i class="fas fa-globe text-7xl text-blue-400 opacity-90 filter drop-shadow-lg"></i>
-                <div class="absolute inset-0 bg-blue-400 rounded-full opacity-20 blur-xl animate-ping"></div>
-            </div>
-            <h1 class="text-5xl sm:text-6xl md:text-7xl font-extrabold mb-4 header-gradient font-montserrat tracking-tight leading-tight">
-                Nature Explorer
-            </h1>
-            <p class="text-lg sm:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed header-subtitle">
-                Embark on a visual journey through Earth's most stunning natural wonders, diverse wildlife, and breathtaking landscapes.
-            </p>
-            
-            <!-- Dynamic Scroll Down Indicator -->
-            <div class="mt-16 animate-bounce text-gray-500">
-                <i class="fas fa-chevron-down text-4xl"></i>
-                <p class="mt-2 text-lg font-medium">Scroll to Discover</p>
-            </div>
-        </header>
-
-        <!-- Tab Navigation -->
-        <div class="flex justify-center mb-16">
-            <div class="glass-container inline-flex shadow-2xl">
-                <div class="flex flex-wrap justify-center gap-2 p-2">
-                    <button id="animal-tab-button" class="tab-button px-7 py-3 text-lg font-semibold bg-transparent text-gray-300 hover:bg-white/10 active ripple">
-                        <i class="fas fa-paw mr-2"></i> Animals
-                    </button>
-                    <button id="forest-tab-button" class="tab-button px-7 py-3 text-lg font-semibold bg-transparent text-gray-300 hover:bg-white/10 ripple">
-                        <i class="fas fa-tree mr-2"></i> Forests
-                    </button>
-                    <button id="birds-tab-button" class="tab-button px-7 py-3 text-lg font-semibold bg-transparent text-gray-300 hover:bg-white/10 ripple">
-                        <i class="fas fa-dove mr-2"></i> Birds
-                    </button>
-                    <button id="reptiles-tab-button" class="tab-button px-7 py-3 text-lg font-semibold bg-transparent text-gray-300 hover:bg-white/10 ripple">
-                        <i class="fas fa-staff-snake mr-2"></i> Reptiles
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab Content -->
-        <div class="relative">
-            <!-- Loading indicator -->
-            <div id="loading-indicator" class="loader" style="display: none; border-top-color: var(--primary-blue);"></div>
-            
-            <!-- Animal Tab Content -->
-            <div id="animal-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                <!-- Lion -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://cdn.pixabay.com/photo/2014/11/03/11/07/lion-515028_1280.jpg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Lion" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Lion</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-globe-africa mr-2"></i>Africa & India
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The king of the jungle, known for its majestic mane and powerful roar, symbolizes strength and nobility.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span class="ml-2">4.8 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://www.britannica.com/animal/lion" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Panthera_leo_leo" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tiger -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://cdn.pixabay.com/photo/2023/11/03/19/59/malaysian-tiger-8363779_1280.jpg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Tiger" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Tiger</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-globe-asia mr-2"></i>Asia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The largest living cat species, identifiable by its distinctive dark vertical stripes. A powerful and solitary hunter.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Tiger" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Tiger_subspecies" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Elephant -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://cdn.pixabay.com/photo/2024/06/27/15/36/animal-8857572_1280.jpg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Elephant" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Elephant</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-globe-africa mr-2"></i>Africa & Asia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The largest land animals, known for their long trunks, large ears, and tusks. Highly intelligent and social.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Elephant" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/African_elephant" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Dog -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://cdn.pixabay.com/photo/2018/05/07/10/49/husky-3380550_1280.jpg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Dog" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Dog</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-globe mr-2"></i>Worldwide
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            Domesticated mammals, renowned for their loyalty and companionship, with a vast array of breeds.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Dog" target="_blank" class="explore-btn flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/List_of_dog_breeds" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Forest Tab Content -->
-            <div id="forest-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                <!-- Amazon Rainforest -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://wallpaperbat.com/img/253658-amazon-rainforest-wallpaper.jpg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Amazon Rainforest" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Amazon Rainforest</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>South America
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The world's largest rainforest, a biodiversity hotspot crucial for global climate regulation.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Amazon_rainforest" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-hiking mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Deforestation_of_the_Amazon_rainforest" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Congo Rainforest -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://th.bing.com/th/id/OIP.mr5qa3Zb0kLUiDkUHORAsgHaEK?w=304&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Congo Rainforest" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Congo Rainforest</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Central Africa
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            Africa's largest rainforest, home to gorillas, chimpanzees, and a vast array of unique species.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span class="ml-2">4.6 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Congo_Basin" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-hiking mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Wildlife_of_the_Democratic_Republic_of_the_Congo" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Taiga (Boreal Forest) -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/338936/pexels-photo-338936.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Taiga Forest" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Taiga</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Northern Hemisphere
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The world's largest land biome, characterized by vast coniferous forests, home to diverse wildlife.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Taiga" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-hiking mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Boreal_forest_of_Canada" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Valdivian Temperate Rainforest -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/1423600/pexels-photo-1423600.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Valdivian Rainforest" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Valdivian Forest</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Chile & Argentina
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            A unique temperate rainforest in Chile and Argentina, known for its ancient trees and rich flora.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Valdivian_temperate_forests" target="_blank" class="explore-btn flex-1 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-hiking mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Forests_of_Chile" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Birds Tab Content -->
-            <div id="birds-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                <!-- Bald Eagle -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/68603/bald-eagle-bird-predator-feathered-68603.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Bald Eagle" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Bald Eagle</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>North America
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The majestic national bird of the United States, a powerful bird of prey known for its white head.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Bald_eagle" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Bird_of_prey" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Peacock -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/3550969/pexels-photo-3550969.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Peacock" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Peacock</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>South Asia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            Renowned for its vibrant, iridescent plumage and spectacular tail display during courtship.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Peafowl" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Indian_peafowl" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hummingbird -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/2629373/pexels-photo-2629373.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Hummingbird" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Hummingbird</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Americas
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The smallest birds, capable of hovering and known for their iridescent plumage and rapid wingbeats.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span class="ml-2">4.7 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Hummingbird" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/List_of_hummingbird_species" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Owl -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/53977/eagle-owl-raptor-falconry-owl-53977.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Owl" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Great Horned Owl</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Americas
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            A large, powerful owl with distinctive ear tufts, an apex predator with exceptional night vision.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Great_horned_owl" target="_blank" class="explore-btn flex-1 py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Owl" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Reptiles Tab Content -->
-            <div id="reptiles-content" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                <!-- Komodo Dragon -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/8856173/pexels-photo-8856173.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Komodo Dragon" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Komodo Dragon</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Indonesia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The largest living lizard, an apex predator known for its venomous bite and immense size.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Komodo_dragon" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Komodo_National_Park" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Green Sea Turtle -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/33056279/pexels-photo-33056279.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Green Sea Turtle" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Green Sea Turtle</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Tropical Oceans
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            A large sea turtle inhabiting tropical and subtropical oceans, an endangered species of marine reptile.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Green_sea_turtle" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Sea_turtle" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chameleon -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://images.pexels.com/photos/1043130/pexels-photo-1043130.jpeg"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="Chameleon" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">Chameleon</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Africa & Madagascar
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            Famous for their rapid color changes, independently moving eyes, and incredibly long tongues.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span class="ml-2">4.7 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/Chameleon" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Madagascar" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- King Cobra -->
-                <div class="card-container group">
-                    <div class="relative h-64 overflow-hidden">
-                        <img src="https://cdn.britannica.com/68/152568-050-CC92308B/King-cobra-world-snake.jpg?w=300"
-                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/334155/64748B?text=Image+Missing';"
-                             alt="King Cobra" class="w-full h-full object-cover card-image">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-                        <div class="absolute bottom-0 left-0 p-6 text-white">
-                            <h2 class="text-3xl font-bold font-montserrat">King Cobra</h2>
-                            <p class="text-sm text-gray-300 flex items-center mt-1">
-                                <i class="fas fa-map-marker-alt mr-2"></i>Southeast Asia
-                            </p>
-                        </div>
-                    </div>
-                    <div class="p-6 card-content">
-                        <p class="text-gray-300 mb-4 leading-relaxed text-sm">
-                            The world's longest venomous snake, a formidable predator capable of delivering potent neurotoxin.
-                        </p>
-                        <div class="flex items-center text-yellow-400 text-sm mb-4">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span class="ml-2">5.0 Rating</span>
-                        </div>
-                        <div class="flex flex-col sm:flex-row gap-3 mt-4 card-buttons-flex">
-                            <a href="https://en.wikipedia.org/wiki/King_cobra" target="_blank" class="explore-btn flex-1 py-3 bg-violet-600 hover:bg-violet-700 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-binoculars mr-2"></i> Explore
-                            </a>
-                            <a href="https://en.wikipedia.org/wiki/Venomous_snake" target="_blank" class="learn-more-btn flex-1 py-3 bg-gray-700 hover:bg-gray-800 text-white rounded-lg flex items-center justify-center transition-colors ripple">
-                                <i class="fas fa-book-open mr-2"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Navigation -->
+  <nav class="bg-gray-800 p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">Nature Explorer</h1>
+    <div>
+      <button onclick="showTab('animals')" class="px-4 py-2 hover:bg-gray-700 rounded">Animals</button>
+      <button onclick="showTab('forests')" class="px-4 py-2 hover:bg-gray-700 rounded">Forests</button>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-300 py-12 mt-20 relative overflow-hidden">
-        <div class="footer-gradient-overlay"></div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div>
-                    <h3 class="text-3xl font-bold mb-4 font-montserrat text-white">Nature Explorer</h3>
-                    <p class="text-gray-400 leading-relaxed">Delve into the wonders of our natural world, from majestic beasts to serene landscapes, and join us in fostering appreciation and conservation.</p>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold mb-5 text-white">Quick Links</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Home</a></li>
-                        <li><a href="#" onclick="toggleModal()" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">About Us</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Gallery</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Conservation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xl font-semibold mb-5 text-white">Connect With Us</h4>
-                    <div class="flex space-x-4 mb-6">
-                        <a href="#" class="w-12 h-12 rounded-full bg-blue-700 flex items-center justify-center hover:bg-blue-600 transition-all duration-300 text-white shadow-lg transform hover:scale-105">
-                            <i class="fab fa-facebook-f text-lg"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-sky-600 flex items-center justify-center hover:bg-sky-500 transition-all duration-300 text-white shadow-lg transform hover:scale-105">
-                            <i class="fab fa-twitter text-lg"></i>
-                      <a href="https://www.instagram.com/nishu_rajput_lovebharat/#" 
-                           class="w-12 h-12 rounded-full bg-pink-600 flex items-center justify-center hover:bg-pink-500 transition-all duration-300 text-white shadow-lg transform hover:scale-105" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                           <i class="fab fa-instagram text-lg"></i>
-                        </a>
-                        <a href="#" class="w-12 h-12 rounded-full bg-red-600 flex items-center justify-center hover:bg-red-500 transition-all duration-300 text-white shadow-lg transform hover:scale-105">
-                            <i class="fab fa-youtube text-lg"></i>
-                        </a>
-                    </div>
-                    <p class="text-gray-400 mb-3">Stay updated with our latest explorations!</p>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email here" class="px-5 py-3 rounded-l-lg bg-gray-800 text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full border border-gray-700">
-                        <button class="bg-blue-600 hover:bg-blue-700 px-5 py-3 rounded-r-lg transition-colors duration-300 text-white font-semibold">
-                            Subscribe
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-500 text-sm">
-                <p>&copy; 2023 Nature Explorer. All rights reserved. | <a href="#" class="hover:text-white transition-colors relative footer-link">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors relative footer-link">Terms of Service</a></p>
-            </div>
+  <!-- Animals Section -->
+  <div id="animals" class="tab-content p-6">
+    <h2 class="text-2xl font-bold mb-4">Top 5 Animals</h2>
+    <!-- Animal Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1598373182133-cd7445bd4a6b?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Royal Bengal Tiger</h3>
+          <p>The national animal of India. Known for its power and grace. Critically endangered due to poaching and habitat loss.</p>
         </div>
-    </footer>
+      </div>
 
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-14 h-14 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full shadow-xl flex items-center justify-center transition-all duration-300 opacity-0 invisible hover:from-blue-600 hover:to-green-600 z-50">
-        <i class="fas fa-arrow-up text-xl"></i>
-    </button>
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1602480509891-98627aa4c2f9?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Lion</h3>
+          <p>The king of the jungle, lions are known for their majestic manes and social pride structures. Mostly found in Africa.</p>
+        </div>
+      </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const animalButton = document.getElementById('animal-tab-button');
-            const forestButton = document.getElementById('forest-tab-button');
-            const birdsButton = document.getElementById('birds-tab-button');
-            const reptilesButton = document.getElementById('reptiles-tab-button');
-            const animalContent = document.getElementById('animal-content');
-            const forestContent = document.getElementById('forest-content');
-            const birdsContent = document.getElementById('birds-content');
-            const reptilesContent = document.getElementById('reptiles-content');
-            const loadingIndicator = document.getElementById('loading-indicator');
-            const backToTopButton = document.getElementById('back-to-top');
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Elephant</h3>
+          <p>The largest land mammal. Highly intelligent and emotional, elephants are known for their memory and social bonds.</p>
+        </div>
+      </div>
 
-            // Function to show a specific tab with animation
-            function showTab(tabName) {
-                // Show loading indicator
-                loadingIndicator.style.display = 'block';
-                
-                // Hide all content divs
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.style.display = 'none';
-                    content.style.animation = 'none'; // Reset animation for immediate hide
-                });
-                // Deactivate all tab buttons
-                document.querySelectorAll('.tab-button').forEach(button => {
-                    button.classList.remove('active');
-                });
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1598133393805-0aa57a480299?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Dog</h3>
+          <p>Man’s best friend. Loyal, intelligent, and domesticated for thousands of years, dogs come in various breeds worldwide.</p>
+        </div>
+      </div>
 
-                // Simulate loading delay for better UX (you can remove this in production)
-                setTimeout(() => {
-                    // Show the selected tab content and activate its button
-                    if (tabName === 'animal') {
-                        animalContent.style.display = 'grid';
-                        animalButton.classList.add('active');
-                        animalContent.style.animation = 'fadeIn 0.6s ease-out forwards';
-                    } else if (tabName === 'forest') {
-                        forestContent.style.display = 'grid';
-                        forestButton.classList.add('active');
-                        forestContent.style.animation = 'fadeIn 0.6s ease-out forwards';
-                    } else if (tabName === 'birds') {
-                        birdsContent.style.display = 'grid';
-                        birdsButton.classList.add('active');
-                        birdsContent.style.animation = 'fadeIn 0.6s ease-out forwards';
-                    } else if (tabName === 'reptiles') {
-                        reptilesContent.style.display = 'grid';
-                        reptilesButton.classList.add('active');
-                        reptilesContent.style.animation = 'fadeIn 0.6s ease-out forwards';
-                    }
-                    
-                    // Hide loading indicator
-                    loadingIndicator.style.display = 'none';
-                    
-                    // Scroll to top of content section for better navigation experience
-                    const contentSection = document.querySelector('.relative.z-10'); // Or a more specific container
-                    if (contentSection) {
-                        window.scrollTo({
-                            top: contentSection.offsetTop - 50, // Adjust offset as needed
-                            behavior: 'smooth'
-                        });
-                    }
-                }, 400); // Shorter delay
-            }
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1594910915021-8b742b40359c?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Buffalo</h3>
+          <p>Strong and sturdy animals used in farming and transport. Vital to rural agriculture in many Asian and African regions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-            // Event listeners for tab buttons
-            animalButton.addEventListener('click', () => showTab('animal'));
-            forestButton.addEventListener('click', () => showTab('forest'));
-            birdsButton.addEventListener('click', () => showTab('birds'));
-            reptilesButton.addEventListener('click', () => showTab('reptiles'));
+  <!-- Forests Section -->
+  <div id="forests" class="tab-content hidden p-6">
+    <h2 class="text-2xl font-bold mb-4">Top 5 Forests</h2>
+    <!-- Forest Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1588792443728-92b573ac9f8e?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Amazon Rainforest</h3>
+          <p>The largest rainforest on Earth, covering multiple South American countries. Home to vast biodiversity and the Amazon River.</p>
+        </div>
+      </div>
 
-            // Show the Animal tab by default on page load
-            showTab('animal');
-            
-            // Back to top button functionality
-            window.addEventListener('scroll', function() {
-                if (window.pageYOffset > 400) { // Increased scroll threshold
-                    backToTopButton.classList.remove('opacity-0', 'invisible');
-                    backToTopButton.classList.add('opacity-100', 'visible');
-                } else {
-                    backToTopButton.classList.remove('opacity-100', 'visible');
-                    backToTopButton.classList.add('opacity-0', 'invisible');
-                }
-            });
-            
-            backToTopButton.addEventListener('click', function() {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-            
-            // Ripple effect for buttons (now applied to .ripple class)
-            document.querySelectorAll('.ripple').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    const x = e.clientX - e.target.getBoundingClientRect().left;
-                    const y = e.clientY - e.target.getBoundingClientRect().top;
-                    
-                    const ripple = document.createElement('span');
-                    ripple.classList.add('ripple-effect');
-                    ripple.style.left = `${x}px`;
-                    ripple.style.top = `${y}px`;
-                    
-                    this.appendChild(ripple);
-                    
-                    // Remove the ripple element after animation
-                    ripple.addEventListener('animationend', () => {
-                        ripple.remove();
-                    });
-                });
-            });
-            
-            // Create particle background
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 40; // Increased particle count
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                const size = Math.random() * 5 + 3; // Larger particles
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100 + 100}vh`; // Start below viewport
-                
-                particle.style.opacity = Math.random() * 0.4 + 0.1;
-                
-                const duration = Math.random() * 15 + 15; // Longer animation duration
-                particle.style.animationDuration = `${duration}s`;
-                
-                particle.style.animationDelay = `${Math.random() * 10}s`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        });
-    </script>
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Congo Basin</h3>
+          <p>The second-largest rainforest in the world, located in central Africa. Rich in wildlife like gorillas and elephants.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1597751982469-c1b6813272b6?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Taiga (Boreal Forest)</h3>
+          <p>Spans across Canada, Russia, and Scandinavia. Known for coniferous trees and long, cold winters. Largest land biome.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1618226363779-9a4c29acb4b0?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Sundarbans</h3>
+          <p>The world’s largest mangrove forest. Found in India and Bangladesh, home to Royal Bengal Tigers and unique flora.</p>
+        </div>
+      </div>
+
+      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+        <img src="https://images.unsplash.com/photo-1534224039826-c7ed498b739b?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
+        <div class="p-4">
+          <h3 class="text-xl font-semibold mb-2">Daintree Rainforest</h3>
+          <p>Located in Australia, it's one of the oldest rainforests on Earth. Known for unique flora and fauna including cassowaries.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-10">
+    <ul class="flex justify-center space-x-6">
+      <li><a href="#" onclick="toggleModal()" class="hover:text-white">About Us</a></li>
+      <li><a href="https://www.instagram.com/nishu_kumar" target="_blank" class="hover:text-white">Instagram</a></li>
+    </ul>
+  </footer>
+
+  <!-- About Us Modal -->
+  <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white text-black p-6 rounded-lg max-w-xl w-full relative shadow-lg">
+      <button onclick="toggleModal()" class="absolute top-2 right-4 text-gray-600 hover:text-black text-2xl">&times;</button>
+      <h2 class="text-2xl font-bold mb-4">About Us</h2>
+      <p class="text-gray-700 text-base">
+        We are a passionate team of developers, designers, and nature lovers who built this project to showcase the beauty of the world’s forests and animals.
+        Our mission is to inspire conservation and promote awareness through accessible digital storytelling.
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    function showTab(tabId) {
+      document.getElementById('animals').classList.add('hidden');
+      document.getElementById('forests').classList.add('hidden');
+      document.getElementById(tabId).classList.remove('hidden');
+    }
+
+    function toggleModal() {
+      const modal = document.getElementById('aboutModal');
+      modal.classList.toggle('hidden');
+    }
+  </script>
+
 </body>
 </html>
-
-<div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-  <div class="bg-white text-black p-6 rounded-lg max-w-md w-full relative">
-    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black">&times;</button>
-    <h2 class="text-xl font-bold mb-2">About Us</h2>
-    <p class="text-sm">
-      We are a group of nature enthusiasts who love to explore forests and study wildlife. Our goal is to share
-      fascinating facts, beautiful images, and promote conservation through education.
-    </p>
-  </div>
-</div>
