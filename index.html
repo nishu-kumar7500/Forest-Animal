@@ -873,7 +873,7 @@
                     <h4 class="text-xl font-semibold mb-5 text-white">Quick Links</h4>
                     <ul class="space-y-3">
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">About Us</a></li>
+                        <li><a href="#" onclick="toggleModal()" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">About Us</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Gallery</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Conservation</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300 relative footer-link">Contact</a></li>
@@ -1055,3 +1055,14 @@
     </script>
 </body>
 </html>
+
+<div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+  <div class="bg-white text-black p-6 rounded-lg max-w-md w-full relative">
+    <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-600 hover:text-black">&times;</button>
+    <h2 class="text-xl font-bold mb-2">About Us</h2>
+    <p class="text-sm">
+      We are a group of nature enthusiasts who love to explore forests and study wildlife. Our goal is to share
+      fascinating facts, beautiful images, and promote conservation through education.
+    </p>
+  </div>
+</div>
