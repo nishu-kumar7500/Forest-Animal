@@ -1,392 +1,111 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nature's Wonders</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #eef2f6; /* Lighter blue-gray background */
-            color: #2d3748; /* Darker text for better contrast */
-        }
-        .header-gradient {
-            background: linear-gradient(90deg, #ffffff 0%, #f7f9fc 100%);
-        }
-        .tab-button {
-            transition: all 0.3s ease-in-out;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .tab-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, #4299e1, #2b6cb0); /* Blue gradient */
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-            z-index: -1;
-            border-radius: 9999px; /* For full rounded effect */
-        }
-        .tab-button.active::before {
-            transform: translateX(0%);
-        }
-        .tab-button.active {
-            color: white;
-            box-shadow: 0 8px 20px rgba(26, 115, 232, 0.4);
-        }
-        .tab-button:hover:not(.active) {
-            color: #1a73e8; /* Blue text on hover for inactive */
-            background-color: #e2e8f0; /* Light gray background on hover */
-            transform: translateY(-2px);
-        }
-        .card-gradient {
-            background: linear-gradient(135deg, #ffffff 0%, #fdfdfd 100%);
-            transition: all 0.3s ease-in-out;
-        }
-        .card-gradient:hover {
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-            transform: translateY(-5px); /* Lift effect */
-        }
-        .footer-gradient {
-            background: linear-gradient(90deg, #1a73e8 0%, #0056b3 100%); /* Blue gradient for footer */
-        }
-        /* Custom scrollbar for content area */
-        .scrollable-content::-webkit-scrollbar {
-            width: 8px;
-        }
-        .scrollable-content::-webkit-scrollbar-track {
-            background: #e2e8f0; /* Light track */
-            border-radius: 10px;
-        }
-        .scrollable-content::-webkit-scrollbar-thumb {
-            background: #1a73e8; /* Blue thumb */
-            border-radius: 10px;
-        }
-        .scrollable-content::-webkit-scrollbar-thumb:hover {
-            background: #0d47a1; /* Darker blue on hover */
-        }
-        .btn-primary {
-            background-color: #1a73e8;
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border-radius: 9999px;
-            font-weight: 600;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-primary:hover {
-            background-color: #0d47a1;
-            box-shadow: 0 6px 15px rgba(26, 115, 232, 0.4);
-            transform: translateY(-1px);
-        }
-        .hero-section {
-            background-image: url('https://placehold.co/1920x600/667eea/ffffff?text=Explore+Nature'); /* Placeholder for a beautiful nature image */
-            background-size: cover;
-            background-position: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-overlay {
-            background-color: rgba(0, 0, 0, 0.5); /* Dark overlay for text readability */
-        }
-        .social-icon:hover {
-            transform: scale(1.1);
-            color: #e2e8f0; /* Lighter color on hover */
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wild Wonders | Explore Animals & Birds</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.1/dist/cdn.min.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e8d0339c.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0f172a;
+      color: #f8fafc;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 1.5rem;
+    }
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      transition: 0.3s ease-in-out;
+    }
+    .tab-btn-active {
+      background: linear-gradient(to right, #06b6d4, #3b82f6);
+      color: white !important;
+    }
+  </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body x-data="{ tab: 'animals' }">
 
-    <!-- Header Section -->
-    <header class="header-gradient shadow-lg py-4 px-6 md:px-12 flex justify-between items-center rounded-b-xl relative z-20">
-        <div class="flex items-center">
-            <img src="https://placehold.co/60x60/1a73e8/ffffff?text=NW" alt="Nature's Wonders Logo" class="h-12 w-12 rounded-full mr-3 shadow-md">
-            <h1 class="text-3xl font-extrabold text-gray-800 tracking-wide">Nature's Wonders</h1>
+  <!-- Hero Section -->
+  <section class="min-h-screen bg-cover bg-center flex flex-col items-center justify-center text-center px-6"
+    style="background-image: url('https://source.unsplash.com/1600x900/?wildlife');">
+    <div class="bg-black/60 p-10 rounded-2xl backdrop-blur-md">
+      <h1 class="text-5xl md:text-6xl font-extrabold mb-4 text-white">Wild Wonders</h1>
+      <p class="text-lg text-gray-300 mb-6">Dive into the majestic world of Animals and Birds in stunning HD</p>
+      <div class="flex justify-center gap-4">
+        <button @click="tab = 'animals'" :class="tab === 'animals' ? 'tab-btn-active' : 'bg-gray-700'" class="px-6 py-2 rounded-full font-semibold transition-all">
+          <i class="fas fa-paw mr-2"></i>Animals
+        </button>
+        <button @click="tab = 'birds'" :class="tab === 'birds' ? 'tab-btn-active' : 'bg-gray-700'" class="px-6 py-2 rounded-full font-semibold transition-all">
+          <i class="fas fa-dove mr-2"></i>Birds
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animal Section -->
+  <section x-show="tab === 'animals'" x-transition class="max-w-7xl mx-auto py-20 px-6">
+    <h2 class="text-4xl font-bold text-center text-cyan-400 mb-10">Explore Animals</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <template x-for="animal in [
+        { name: 'Lion', img: 'lion', desc: 'King of the jungle with power and pride.' },
+        { name: 'Elephant', img: 'elephant', desc: 'Massive, intelligent, and gentle giant.' },
+        { name: 'Tiger', img: 'tiger', desc: 'Stealthy, strong and mesmerizing stripes.' }
+      ]">
+        <div class="glass card-hover p-4 transition duration-300">
+          <img :src="'https://source.unsplash.com/600x400/?' + animal.img" class="w-full h-56 object-cover rounded-xl mb-4">
+          <h3 class="text-xl font-semibold text-white" x-text="animal.name"></h3>
+          <p class="text-sm text-gray-400 mt-2" x-text="animal.desc"></p>
         </div>
-        <nav>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Home</a></li>
-                <li><a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">About Us</a></li>
-                <li><a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Gallery</a></li>
-                <li><a href="#" class="text-gray-700 hover:text-blue-600 font-medium transition duration-300">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+      </template>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero-section py-20 md:py-24 text-white text-center rounded-b-xl shadow-inner mb-8">
-        <div class="hero-overlay absolute inset-0"></div>
-        <div class="container mx-auto relative z-10 px-4">
-            <h2 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">Discover the Beauty of Wildlife</h2>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 opacity-90">Explore the fascinating world of animals and birds through stunning HD photography and insightful information.</p>
-            <button class="btn-primary">
-                Explore Gallery <i class="fas fa-arrow-right ml-2"></i>
-            </button>
+  <!-- Bird Section -->
+  <section x-show="tab === 'birds'" x-transition class="max-w-7xl mx-auto py-20 px-6">
+    <h2 class="text-4xl font-bold text-center text-pink-400 mb-10">Discover Birds</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <template x-for="bird in [
+        { name: 'Peacock', img: 'peacock', desc: 'Nature’s vibrant masterpiece.' },
+        { name: 'Parrot', img: 'parrot', desc: 'Colorful and clever with mimicry skills.' },
+        { name: 'Eagle', img: 'eagle', desc: 'Sharp vision and unmatched flight power.' }
+      ]">
+        <div class="glass card-hover p-4 transition duration-300">
+          <img :src="'https://source.unsplash.com/600x400/?' + bird.img" class="w-full h-56 object-cover rounded-xl mb-4">
+          <h3 class="text-xl font-semibold text-white" x-text="bird.name"></h3>
+          <p class="text-sm text-gray-400 mt-2" x-text="bird.desc"></p>
         </div>
-    </section>
+      </template>
+    </div>
+  </section>
 
-    <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto p-4 md:p-8">
-        <!-- Tab Navigation -->
-        <div class="flex justify-center mb-10 bg-white p-2 rounded-full shadow-lg max-w-lg mx-auto">
-            <button id="animalsTab" class="tab-button active flex-1 py-3 px-8 rounded-full text-lg font-semibold focus:outline-none">
-                Animals
-            </button>
-            <button id="birdsTab" class="tab-button flex-1 py-3 px-8 rounded-full text-lg font-semibold focus:outline-none">
-                Birds
-            </button>
-        </div>
+  <!-- Footer -->
+  <footer class="bg-gray-900 mt-24 py-10 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-sm text-gray-400">
+      <div>
+        <h4 class="text-white font-semibold mb-2">Contact</h4>
+        <p>Email: hello@wildwonders.com</p>
+        <p>Phone: +91 9876543210</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-2">Social</h4>
+        <p><i class="fab fa-instagram mr-2"></i>@wildwonders</p>
+        <p><i class="fab fa-facebook mr-2"></i>/wildwonders</p>
+        <p><i class="fab fa-twitter mr-2"></i>@wild_wonders</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-2">Info</h4>
+        <p>Privacy Policy</p>
+        <p>Terms & Conditions</p>
+        <p class="mt-4 text-xs text-gray-600">&copy; 2025 Wild Wonders</p>
+      </div>
+    </div>
+  </footer>
 
-        <!-- Tab Content Container -->
-        <div id="tabContent" class="bg-white p-6 md:p-10 rounded-xl shadow-2xl scrollable-content" style="max-height: calc(100vh - 450px); overflow-y: auto;">
-            <!-- Animals Content (Default Active) -->
-            <div id="animalsContent" class="tab-pane active grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Animal Card 1: Lion -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/FFD700/000000?text=Lion" alt="Lion" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Majestic Lion</h3>
-                        <p class="text-gray-700 text-sm mb-4">The king of the jungle, known for its powerful roar and social pride structure. Lions are apex predators native to Africa and India.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Animal Card 2: Elephant -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/90EE90/000000?text=Elephant" alt="Elephant" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Gentle Giant Elephant</h3>
-                        <p class="text-gray-700 text-sm mb-4">The largest land animal, known for its intelligence, strong family bonds, and distinctive trunk. Elephants play a crucial role in their ecosystems.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Animal Card 3: Tiger -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/FFA07A/000000?text=Tiger" alt="Tiger" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Striped Tiger</h3>
-                        <p class="text-gray-700 text-sm mb-4">A powerful and solitary big cat, recognized by its unique pattern of dark vertical stripes on reddish-orange fur. Tigers are endangered.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Animal Card 4: Giraffe -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/ADD8E6/000000?text=Giraffe" alt="Giraffe" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tall Giraffe</h3>
-                        <p class="text-gray-700 text-sm mb-4">The tallest living terrestrial animal, known for its extremely long neck and legs, and distinctive coat patterns. They are native to Africa.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Animal Card 5: Zebra -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/F0F8FF/000000?text=Zebra" alt="Zebra" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Striped Zebra</h3>
-                        <p class="text-gray-700 text-sm mb-4">African equids united by their distinctive black-and-white striped coats. Each zebra's stripes are unique, like human fingerprints.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Animal Card 6: Panda -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/DDA0DD/000000?text=Panda" alt="Panda" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Cute Panda</h3>
-                        <p class="text-gray-700 text-sm mb-4">A bear native to south central China, characterized by large, distinctive black patches around its eyes, over the ears, and across its round body.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Birds Content -->
-            <div id="birdsContent" class="tab-pane hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Bird Card 1: Eagle -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/B0E0E6/000000?text=Eagle" alt="Eagle" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Majestic Eagle</h3>
-                        <p class="text-gray-700 text-sm mb-4">Large, powerful birds of prey, known for their keen eyesight and strong talons. Eagles are symbols of power and freedom in many cultures.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bird Card 2: Peacock -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/DA70D6/000000?text=Peacock" alt="Peacock" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Vibrant Peacock</h3>
-                        <p class="text-gray-700 text-sm mb-4">Known for the male's extravagant tail feathers, which he displays during courtship. Peacocks are native to Asia and Africa.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bird Card 3: Hummingbird -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/AFEEEE/000000?text=Hummingbird" alt="Hummingbird" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Tiny Hummingbird</h3>
-                        <p class="text-gray-700 text-sm mb-4">Smallest birds, known for their ability to hover in mid-air by rapidly flapping their wings. They feed on nectar and are found in the Americas.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bird Card 4: Owl -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/D3D3D3/000000?text=Owl" alt="Owl" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Wise Owl</h3>
-                        <p class="text-gray-700 text-sm mb-4">Nocturnal birds of prey known for their large forward-facing eyes, sharp talons, and silent flight. They are found worldwide.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bird Card 5: Penguin -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/87CEEB/000000?text=Penguin" alt="Penguin" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Charming Penguin</h3>
-                        <p class="text-gray-700 text-sm mb-4">Flightless aquatic birds living almost exclusively in the Southern Hemisphere. They are highly adapted for life in the water.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Bird Card 6: Toucan -->
-                <div class="card-gradient rounded-lg shadow-xl overflow-hidden group">
-                    <img src="https://placehold.co/600x400/FFDAB9/000000?text=Toucan" alt="Toucan" class="w-full h-48 object-cover transform group-hover:scale-105 transition duration-300">
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">Colorful Toucan</h3>
-                        <p class="text-gray-700 text-sm mb-4">Known for their large, colorful bills, toucans are native to the tropical and subtropical regions of Central and South America.</p>
-                        <button class="btn-primary">
-                            View HD Photo <i class="fas fa-image ml-2"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- Footer Section -->
-    <footer class="footer-gradient text-white py-8 px-6 md:px-12 mt-12 rounded-t-xl shadow-inner">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Contact Details -->
-            <div>
-                <h4 class="text-xl font-bold mb-4">Contact Us</h4>
-                <p class="text-sm mb-2">Email: <a href="mailto:info@natureswonders.com" class="hover:underline">info@natureswonders.com</a></p>
-                <p class="text-sm mb-2">Phone: <a href="tel:+11234567890" class="hover:underline">+1 (123) 456-7890</a></p>
-                <p class="text-sm">Address: 123 Wildlife Lane, Nature City, NW 98765</p>
-            </div>
-
-            <!-- Social Media -->
-            <div>
-                <h4 class="text-xl font-bold mb-4">Follow Us</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-white hover:text-gray-300 transition duration-300 social-icon" aria-label="Facebook">
-                        <i class="fab fa-facebook-f text-xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition duration-300 social-icon" aria-label="Instagram">
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition duration-300 social-icon" aria-label="Twitter">
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-white hover:text-gray-300 transition duration-300 social-icon" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in text-xl"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Other Important Information -->
-            <div>
-                <h4 class="text-xl font-bold mb-4">Quick Links</h4>
-                <ul class="text-sm space-y-2">
-                    <li><a href="#" class="hover:text-gray-300 transition duration-300">Privacy Policy</a></li>
-                    <li><a href="#" class="hover:text-gray-300 transition duration-300">Terms of Service</a></li>
-                    <li><a href="#" class="hover:text-gray-300 transition duration-300">FAQ</a></li>
-                    <li><a href="#" class="hover:text-gray-300 transition duration-300">Sitemap</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="text-center text-sm mt-8 pt-4 border-t border-blue-500">
-            &copy; 2025 Nature's Wonders. All rights reserved.
-        </div>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const animalsTab = document.getElementById('animalsTab');
-            const birdsTab = document.getElementById('birdsTab');
-            const animalsContent = document.getElementById('animalsContent');
-            const birdsContent = document.getElementById('birdsContent');
-
-            // Function to show a specific tab
-            function showTab(tabName) {
-                // Remove 'active' class from all tab buttons and hide all tab panes
-                animalsTab.classList.remove('active');
-                birdsTab.classList.remove('active');
-                animalsContent.classList.add('hidden');
-                birdsContent.classList.add('hidden');
-
-                // Add 'active' class to the clicked tab button and show its content
-                if (tabName === 'animals') {
-                    animalsTab.classList.add('active');
-                    animalsContent.classList.remove('hidden');
-                } else if (tabName === 'birds') {
-                    birdsTab.classList.add('active');
-                    birdsContent.classList.remove('hidden');
-                }
-            }
-
-            // Event listeners for tab buttons
-            animalsTab.addEventListener('click', function() {
-                showTab('animals');
-            });
-
-            birdsTab.addEventListener('click', function() {
-                showTab('birds');
-            });
-
-            // Initially show the animals tab
-            showTab('animals');
-        });
-    </script>
 </body>
 </html>
