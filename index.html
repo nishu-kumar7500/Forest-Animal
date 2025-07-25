@@ -2,137 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Forests and Animals</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Nature</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-gray-900 text-white">
+<body class="bg-gradient-to-b from-green-100 to-green-300 text-gray-800 min-h-screen">
 
-  <!-- Navigation -->
-  <nav class="bg-gray-800 p-4 flex justify-between items-center">
-    <h1 class="text-xl font-bold">Nature Explorer</h1>
-    <div>
-      <button onclick="showTab('animals')" class="px-4 py-2 hover:bg-gray-700 rounded">Animals</button>
-      <button onclick="showTab('forests')" class="px-4 py-2 hover:bg-gray-700 rounded">Forests</button>
+  <!-- Header -->
+  <header class="bg-green-800 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+      <h1 class="text-3xl font-bold">🌿 Nature Explorer</h1>
+      <nav class="space-x-4">
+        <button onclick="showTab('animals')" class="hover:bg-green-600 px-4 py-2 rounded">Animals</button>
+        <button onclick="showTab('forests')" class="hover:bg-green-600 px-4 py-2 rounded">Forests</button>
+        <button onclick="toggleModal()" class="hover:bg-green-600 px-4 py-2 rounded">About Us</button>
+      </nav>
     </div>
-  </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-green-200 py-20 text-center">
+    <h2 class="text-4xl font-bold mb-2">Discover the Wonders of Forests & Wildlife</h2>
+    <p class="text-xl text-gray-700">Curated facts, stunning images, and inspiring knowledge about our natural world</p>
+  </section>
 
   <!-- Animals Section -->
-  <div id="animals" class="tab-content p-6">
-    <h2 class="text-2xl font-bold mb-4">Top 5 Animals</h2>
-    <!-- Animal Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1598373182133-cd7445bd4a6b?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Royal Bengal Tiger</h3>
-          <p>The national animal of India. Known for its power and grace. Critically endangered due to poaching and habitat loss.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1602480509891-98627aa4c2f9?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Lion</h3>
-          <p>The king of the jungle, lions are known for their majestic manes and social pride structures. Mostly found in Africa.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1560807707-8cc77767d783?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Elephant</h3>
-          <p>The largest land mammal. Highly intelligent and emotional, elephants are known for their memory and social bonds.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1598133393805-0aa57a480299?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Dog</h3>
-          <p>Man’s best friend. Loyal, intelligent, and domesticated for thousands of years, dogs come in various breeds worldwide.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1594910915021-8b742b40359c?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Buffalo</h3>
-          <p>Strong and sturdy animals used in farming and transport. Vital to rural agriculture in many Asian and African regions.</p>
-        </div>
-      </div>
+  <section id="animals" class="tab-content p-6 max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold mb-6">Top 5 Animals</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards: Add animal cards here -->
     </div>
-  </div>
+  </section>
 
   <!-- Forests Section -->
-  <div id="forests" class="tab-content hidden p-6">
-    <h2 class="text-2xl font-bold mb-4">Top 5 Forests</h2>
-    <!-- Forest Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1588792443728-92b573ac9f8e?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Amazon Rainforest</h3>
-          <p>The largest rainforest on Earth, covering multiple South American countries. Home to vast biodiversity and the Amazon River.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Congo Basin</h3>
-          <p>The second-largest rainforest in the world, located in central Africa. Rich in wildlife like gorillas and elephants.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1597751982469-c1b6813272b6?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Taiga (Boreal Forest)</h3>
-          <p>Spans across Canada, Russia, and Scandinavia. Known for coniferous trees and long, cold winters. Largest land biome.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1618226363779-9a4c29acb4b0?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Sundarbans</h3>
-          <p>The world’s largest mangrove forest. Found in India and Bangladesh, home to Royal Bengal Tigers and unique flora.</p>
-        </div>
-      </div>
-
-      <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
-        <img src="https://images.unsplash.com/photo-1534224039826-c7ed498b739b?auto=format&fit=crop&w=600&q=80" class="w-full h-64 object-cover">
-        <div class="p-4">
-          <h3 class="text-xl font-semibold mb-2">Daintree Rainforest</h3>
-          <p>Located in Australia, it's one of the oldest rainforests on Earth. Known for unique flora and fauna including cassowaries.</p>
-        </div>
-      </div>
+  <section id="forests" class="tab-content p-6 max-w-7xl mx-auto hidden">
+    <h2 class="text-3xl font-bold mb-6">Top 5 Forests</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards: Add forest cards here -->
     </div>
-  </div>
+  </section>
 
   <!-- Footer -->
-  <footer class="bg-gray-800 text-gray-400 text-center py-6 mt-10">
-    <ul class="flex justify-center space-x-6">
-      <li><a href="#" onclick="toggleModal()" class="hover:text-white">About Us</a></li>
-      <li><a href="https://www.instagram.com/nishu_kumar" target="_blank" class="hover:text-white">Instagram</a></li>
-    </ul>
+  <footer class="bg-green-900 text-white py-6 text-center mt-20">
+    <p class="text-sm">&copy; 2025 Nature Explorer | Follow us: 
+      <a href="https://www.instagram.com/nishu_kumar" target="_blank" class="underline hover:text-green-300">Instagram</a>
+    </p>
   </footer>
 
   <!-- About Us Modal -->
-  <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-    <div class="bg-white text-black p-6 rounded-lg max-w-xl w-full relative shadow-lg">
-      <button onclick="toggleModal()" class="absolute top-2 right-4 text-gray-600 hover:text-black text-2xl">&times;</button>
+  <div id="aboutModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
+    <div class="bg-white text-black p-8 rounded-xl w-full max-w-xl relative">
+      <button onclick="toggleModal()" class="absolute top-2 right-4 text-2xl text-gray-700">&times;</button>
       <h2 class="text-2xl font-bold mb-4">About Us</h2>
-      <p class="text-gray-700 text-base">
-        We are a passionate team of developers, designers, and nature lovers who built this project to showcase the beauty of the world’s forests and animals.
-        Our mission is to inspire conservation and promote awareness through accessible digital storytelling.
+      <p>
+        Nature Explorer is a passion project dedicated to showcasing the most majestic animals and breathtaking forests around the world. We believe that through education and visual storytelling, we can inspire conservation and love for our planet.
       </p>
     </div>
   </div>
 
-  <!-- Scripts -->
   <script>
     function showTab(tabId) {
       document.getElementById('animals').classList.add('hidden');
@@ -143,6 +71,7 @@
     function toggleModal() {
       const modal = document.getElementById('aboutModal');
       modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
     }
   </script>
 
