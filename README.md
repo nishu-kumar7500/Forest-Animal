@@ -1,49 +1,45 @@
+# 🌿 Nature Explorer - Project Overview
+
+This project is a single-page, modern web interface built using **HTML** and **Tailwind CSS**. It showcases information about forests and animals with a stylish, responsive design.
 
 ---
 
-## 🚀 How to Run
+## 📄 Page Structure
 
-1. **Clone or Download** this repo
-2. Make sure you have a browser (e.g. Chrome, Edge, Firefox)
-3. Simply **open `index.html`** in your browser
+### 🔝 Header
+- Contains the site title: **“Nature Explorer”**
+- Navigation buttons for:
+  - **Animals**
+  - **Forests**
+  - **About Us** (opens a modal)
 
-> 💡 No dependencies or build tools required!
+### 🌄 Hero Section
+- Title: “Explore the Wild”
+- Subtitle: “Discover the beauty of animals and forests with immersive visuals and facts”
+- Positioned under the navigation bar
 
----
+### 🐾 Animals Section (`#animals`)
+- A hidden section that becomes visible when the **Animals** tab is clicked
+- Intended to hold cards/images and information about 5 animals
+- Cards should be added inside the `<section id="animals">` grid layout
 
-## 🔧 How to Customize
+### 🌲 Forests Section (`#forests`)
+- Another hidden section toggled by the **Forests** button
+- Structured identically to the animals section
+- Designed to display forest information and images in a card format
 
-- 🌳 **Add more forests/animals**: Copy and paste a card in the `<section id="animals">` or `<section id="forests">` areas.
-- 🎨 **Change theme**: Modify Tailwind classes in `index.html`.
-- 🌐 **Add more pages**: Add separate HTML files and link them from the navbar.
+### 🧾 About Us Modal
+- A hidden modal (`#aboutModal`) that appears on clicking **“About Us”**
+- Contains descriptive text about the creators of the project
 
----
-
-## 📸 Image Sources
-
-All images are loaded directly from [Unsplash](https://unsplash.com) via URLs in `img` tags.
-
----
-
-## 👨‍💻 Technologies Used
-
-- HTML5
-- Tailwind CSS v2.2
-- JavaScript (vanilla)
-- Font Awesome for icons
-
----
-
-## 📬 Contact / Connect
-
-- Instagram: [@nishu_kumar](https://www.instagram.com/nishu_kumar)
+### 🔻 Footer
+- Displays a copyright
+- Contains a link to an Instagram profile
 
 ---
 
-## 📄 License
+## 🧠 JavaScript Functions
 
-This project is open-source and free to use under the MIT License.
-
----
-
-Made with ❤️ by Nature Lovers
+- `showTab(tabId)`:
+  - Toggles between `#animals` and `#forests` sections
+- `toggle
