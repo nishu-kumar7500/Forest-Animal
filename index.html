@@ -2,346 +2,400 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Indian Temples Information</title>
+    <title>Sacred Journeys: Indian Temples</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google font for Devanagari and Montserrat -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;600&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* CSS Variables for Theming */
+        :root {
+            --primary-color: #6a008a; /* A deep, rich purple */
+            --secondary-color: #fca311; /* A vibrant orange-gold */
+            --background-gradient-start: #f8f0ff;
+            --background-gradient-end: #e6e6fa;
+            --text-color: #333;
+            --light-text-color: #f5f5f5;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-radius: 12px;
+            --box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Base Styles */
         body {
-            font-family: 'Montserrat', 'Noto Sans Devanagari', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
             margin: 0;
+            background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
             min-height: 100vh;
-            background: linear-gradient(120deg, #eeddcc 0%, #e9e7fd 55%, #fbeee0 100%);
-            transition: background .4s;
-            /* Custom scrollbar */
-            scrollbar-width: thin;
-            scrollbar-color: #f4b640 #e9e7fd;
+            line-height: 1.6;
         }
-        ::-webkit-scrollbar {
-            width: 10px;
-            background: #e9e7fd;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #f4b640;
-            border-radius: 7px;
-        }
-        .container {
-            max-width: 1180px;
-            margin: 48px auto;
-            background: rgba(255,255,255,0.7);
-            border-radius: 22px;
-            box-shadow: 0 12px 32px rgba(72,63,138,.15), 0 1.5px 20px #f4b64088;
-            padding: 38px 54px 54px 54px;
-            position: relative;
-            backdrop-filter: blur(7px) saturate(112%);
-        }
-        .header-svg {
-            position: absolute;
-            top: -38px; left: 32px;
-            height: 40px;
-            fill: #f4b640;
-            opacity: 0.64;
-        }
-        h1 {
-            text-align: center;
-            font-size: 3.1em;
-            color: #331a53;
-            margin-bottom: 18px;
-            font-weight: 800;
-            position: relative;
-            letter-spacing: 2px;
-        }
-        .tabs {
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--primary-color);
+            padding: 1rem 2rem;
             display: flex;
-            justify-content: center;
-            gap: 0.5em;
-            margin-bottom: 36px;
-            position: relative;
-            z-index: 2;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        .tab-button {
-            background: linear-gradient(90deg,#4B1789 55%,#56309e 100%);
-            color: #fff;
-            border: none;
-            border-radius: 20px 20px 0 0;
-            padding: 18px 48px;
-            font-size: 1.32em;
-            margin: 0 7px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(72,63,138,.12),0 1px 7px #f4b64033;
-            outline: none;
-            position: relative;
-            transition: background .30s, transform .14s;
-            letter-spacing: 1px;
-        }
-        .tab-button:hover {
-            background: linear-gradient(90deg,#f4b640 21%, #4B1789 80%);
-            color: #222;
-            transform: translateY(-3px) scale(1.04);
-        }
-        .tab-button.active {
-            background: linear-gradient(90deg,#f4b640 42%, #fff2e0 100%);
-            color: #4B1789;
-            box-shadow: 0 12px 42px #f4b6401a,0 1px 7px #56309e22;
-        }
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s both;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        @keyframes fadeIn {
-            from {opacity:0; transform:translateY(26px);}
-            to {opacity:1; transform:translateY(0);}
-        }
-        .temple-details {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            gap: 24px;
-        }
-        .temple-info {
-            flex: 1 1 380px;
-            min-width: 350px;
-            padding-right: 32px;
-            font-size: 1.175em;
-            color: #2a233b;
-            background: rgba(255,255,255,0.68);
-            border-radius: 22px;
-            box-shadow: 0 4px 23px #e7dced2a;
-            padding: 24px 32px 24px 24px;
-            margin-bottom:2vw;
-        }
-        .temple-info ul {padding-left: 24px;}
-        .temple-info li {
-            margin-bottom: 7px;
-        }
-        .temple-title {
-            font-size: 2.5em;
-            margin: 4px 0 18px 0;
-            color: #f4b640;
-            letter-spacing: 1px;
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            color: var(--secondary-color);
+            font-size: 1.8rem;
             font-weight: bold;
-            text-shadow: 0 1px 9px #e9e7fd, 0 1px 2px #331a5380;
         }
-        .temple-images {
-            flex: 1 1 340px;
-            min-width: 320px;
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--light-text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: linear-gradient(rgba(106, 0, 138, 0.7), rgba(106, 0, 138, 0.7)), url('https://source.unsplash.com/1600x900/?indian-temple-architecture') center/cover no-repeat;
+            color: var(--light-text-color);
+            min-height: 400px;
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            padding-top:12px;
-        }
-        .temple-images img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            border-radius: 15px;
-            box-shadow: 0 2px 24px #4b17891a, 0 1px 18px #f4b6403a;
-            cursor: pointer;
-            transition:.19s transform,.27s box-shadow;
-        }
-        .temple-images img:hover {
-            transform: scale(1.05) translateY(-4px);
-            box-shadow: 0 12px 32px #331a5322, 0 1px 16px #f4b6403d;
-        }
-        .img-modal {
-            display:none;
-            position: fixed;
-            z-index: 22;
-            left: 0; top:0;
-            width:100%; height:100%;
-            align-items: center;
             justify-content: center;
-            background: rgba(25,21,48,.55);
-            backdrop-filter: blur(8px) brightness(1.04);
-            animation: modalIn 0.23s both;
         }
-        @keyframes modalIn {
-            from {opacity:0;}
-            to {opacity:1;}
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
         }
-        .img-modal img {
-            max-width: 80vw;
-            max-height: 78vh;
-            border-radius: 18px;
-            box-shadow: 0 16px 48px #331a5377, 0 1px 18px #f4b6405a;
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
         }
-        .img-modal .close {
+
+        .hero-button {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-block;
+        }
+
+        .hero-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(252, 163, 17, 0.3);
+        }
+
+        /* --- Main Content Section (Cards) --- */
+        .main-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .temple-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .temple-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .temple-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15), 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .temple-card-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .temple-card-content {
+            padding: 1.5rem;
+        }
+
+        .temple-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .temple-card-info {
+            font-size: 0.95rem;
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+        
+        .temple-card-info li {
+            list-style: none; /* Remove default list bullets */
+            padding-left: 1.2rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .temple-card-info li::before {
+            content: '•';
+            color: var(--secondary-color);
+            font-size: 1.5em;
             position: absolute;
-            top:32px; right:60px;
-            background: #f4b640;
-            color: #4B1789;
-            font-size: 2.8em;
-            border-radius:50%;
-            padding: 0 20px 10px 20px;
-            cursor: pointer;
-            box-shadow: 0 6px 16px #4B178951;
-            font-weight: bold;
-            border:2px solid #fff7e0;
+            left: 0;
+            top: -0.2rem;
         }
-        /* Hindi font only for manually added parts */
-        [lang="hi"] {
-            font-family: 'Noto Sans Devanagari', serif;
-            font-weight: 500;
-            color: #4B1789;
+        
+        /* Hindi text styling */
+        .temple-card-info p[lang="hi"] {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 1rem;
+            color: #666;
+            margin-top: 1rem;
         }
-        /* Decorative lines */
-        .decor-line {
-            display:block;
-            width: 54px;
-            height:4px;
-            background:#331a53;
-            margin: 9px 0 11px 0;
-            border-radius:9px;
-            opacity:0.13;
+
+        /* --- About Section --- */
+        .about-section {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 4rem 2rem;
+            text-align: center;
         }
-        @media (max-width: 1000px) {
-            .container{ padding:20px 2vw;}
-            h1{ font-size:2.4em; }
-            .tabs{ flex-direction:row;}
+
+        .about-section h2, .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
         }
-        @media (max-width:750px) {
-            .container{ padding:8px 1vw;}
-            .temple-details{ flex-direction:column;}
-            .temple-info, .temple-images{ padding:0 1vw; min-width:1px;}
-            h1{ font-size:1.45em;}
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: #1a1a1a;
+            color: #ccc;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-link {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .footer-link:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .contact-info {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+        }
+
+        /* --- Utility Classes & Responsiveness --- */
+        .text-center { text-align: center; }
+
+        @media (max-width: 768px) {
+            .header { flex-direction: column; }
+            .nav-links { margin-top: 1rem; gap: 1rem; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .main-container { padding: 0 1rem; }
+            .footer { flex-direction: column; text-align: center; }
+            .social-links { margin-top: 1rem; }
         }
     </style>
-    <script>
-        // Tabs switching
-        function showTab(tabId) {
-            let tabs = document.querySelectorAll('.tab-content');
-            let buttons = document.querySelectorAll('.tab-button');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            buttons.forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            document.getElementById(tabId + '-btn').classList.add('active');
-        }
-        window.onload = function() { showTab('kedarnath'); }
-
-        // Modal image gallery
-        function openModal(src, alt) {
-            var modal = document.getElementById("imgModal");
-            var img = document.getElementById("modalImg");
-            img.src = src;
-            img.alt = alt;
-            modal.style.display = "flex";
-        }
-        function closeModal() {
-            document.getElementById("imgModal").style.display = "none";
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.temple-images img').forEach(function(img){
-                img.onclick = function() { openModal(img.src, img.alt);}
-            });
-        });
-    </script>
 </head>
 <body>
-<div class="container">
-    <!-- Decorative SVG Icon (Lotus) -->
-    <svg class="header-svg" viewBox="0 0 64 32"><path d="M32 32q4-14 16-18a11 11 0 0 0-16 16 11 11 0 0 0-16-16Q28 18 32 32" /></svg>
-    <h1>भारत के कुछ विशेष और प्रसिद्ध मंदिर</h1>
-    <div class="tabs">
-        <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">Kedarnath Temple</button>
-        <button class="tab-button" id="mahakal-btn" onclick="showTab('mahakal')">Mahakal Temple</button>
-        <button class="tab-button" id="amarnath-btn" onclick="showTab('amarnath')">Amarnath Guffa</button>
-        <button class="tab-button" id="ram-btn" onclick="showTab('ram')">Shree Ram Temple</button>
-    </div>
-    <div id="kedarnath" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <span class="decor-line"></span>
-                <div class="temple-title">Kedarnath Temple</div>
-                <ul>
-                    <li><b>Location:</b> Uttarakhand, India, in the Himalayas</li>
-                    <li><b>Built:</b> Original structure attributed to <b>Pandavas (c.3100 BCE)</b>, present temple built in the 8th century by <b>Adi Shankaracharya</b></li>
-                    <li><b>Who Built:</b> Pandavas (legend), Adi Shankaracharya (current temple)</li>
-                    <li><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture.</li>
-                    <li><b>Special Details:</b> The temple survived many natural disasters and glaciation, signifying its remarkable engineering.</li>
-                </ul>
-                <span class="decor-line"></span>
-                <p lang="hi">केदारनाथ मंदिर उत्तराखंड में हिमालय की खूबसूरत घाटियों में स्थित है। यह मंदिर आदि शंकराचार्य द्वारा आठवीं शताब्दी में पुनर्निर्मित किया गया था।</p>
+    <header class="header">
+        <div class="logo">Sacred Journeys</div>
+        <nav class="nav-links">
+            <a href="#temples" class="nav-link">Temples</a>
+            <a href="#about" class="nav-link">About Us</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Discover India's Divine Heritage</h1>
+            <p>Explore the history, architecture, and spiritual significance of India's most revered temples.</p>
+            <a href="#temples" class="hero-button">Start Your Journey</a>
+        </section>
+
+        <section id="temples" class="main-container">
+            <h2 class="text-center">Featured Temples</h2>
+            <div class="temple-cards-container">
+                <article class="temple-card">
+                    <img src="https://uttarakhandtriptrek.com/wp-content/uploads/2023/11/Snapinsta.app_293175459_581754693537885_5742373109704896684_n_1024.jpg" alt="Kedarnath Temple" class="temple-card-image">
+                    <div class="temple-card-content">
+                        <h3 class="temple-card-title">Kedarnath Temple</h3>
+                        <ul class="temple-card-info">
+                            <li><b>Location:</b> Uttarakhand, India, in the Himalayas</li>
+                            <li><b>Built:</b> Original structure attributed to Pandavas (c.3100 BCE)</li>
+                            <li><b>Who Built:</b> Adi Shankaracharya (current temple)</li>
+                            <li><b>Special Details:</b> The temple survived many natural disasters and glaciation.</li>
+                        </ul>
+                        <p lang="hi">केदारनाथ मंदिर उत्तराखंड में हिमालय की खूबसूरत घाटियों में स्थित है। यह मंदिर आदि शंकराचार्य द्वारा आठवीं शताब्दी में पुनर्निर्मित किया गया था।</p>
+                    </div>
+                </article>
+
+                <article class="temple-card">
+                    <img src="https://www.shutterstock.com/image-photo/mahakaleshwar-temple-ujjain-beautiful-view-260nw-1561660316.jpg" alt="Mahakal Temple" class="temple-card-image">
+                    <div class="temple-card-content">
+                        <h3 class="temple-card-title">Mahakal Temple</h3>
+                        <ul class="temple-card-info">
+                            <li><b>Location:</b> Ujjain, Madhya Pradesh, India</li>
+                            <li><b>Built:</b> Earliest references to 4th century BCE</li>
+                            <li><b>Who Built:</b> Kumarasena and others</li>
+                            <li><b>Special Details:</b> Known for its Bhasma aarti and Jyotirlinga significance.</li>
+                        </ul>
+                        <p lang="hi">महाकाल मंदिर उज्जैन, मध्य प्रदेश में स्थित है, और इसका उल्लेख प्राचीन काल से मिलता है।</p>
+                    </div>
+                </article>
+
+                <article class="temple-card">
+                    <img src="https://source.unsplash.com/1600x900/?amarnath-cave-temple" alt="Amarnath Guffa" class="temple-card-image">
+                    <div class="temple-card-content">
+                        <h3 class="temple-card-title">Amarnath Guffa (Cave)</h3>
+                        <ul class="temple-card-info">
+                            <li><b>Location:</b> Jammu & Kashmir, India</li>
+                            <li><b>Built:</b> Natural cave formation, worshipped since antiquity</li>
+                            <li><b>Who Built:</b> Attributed to Maharishi Bhrigu (legend)</li>
+                            <li><b>Special Details:</b> Natural cave with an ice stalagmite Shiva Lingam.</li>
+                        </ul>
+                        <p lang="hi">अमरनाथ गुफा जम्मू-कश्मीर में स्थित एक प्राकृतिक गुफा है, जिसमें शिवलिंग हिमांशु से बना होता है।</p>
+                    </div>
+                </article>
+
+                <article class="temple-card">
+                    <img src="https://i.pinimg.com/1200x/89/b6/7c/89b67c46ca09610d089927f0a3c9bc4d.jpg" alt="Shree Ram Temple Ayodhya" class="temple-card-image">
+                    <div class="temple-card-content">
+                        <h3 class="temple-card-title">Shree Ram Temple</h3>
+                        <ul class="temple-card-info">
+                            <li><b>Location:</b> Ayodhya, Uttar Pradesh, India</li>
+                            <li><b>Built:</b> Current temple completed in 2024</li>
+                            <li><b>Who Built:</b> Shri Ram Janmabhoomi Teerth Kshetra Trust</li>
+                            <li><b>Special Details:</b> Birthplace of Lord Ram, grand pilgrimage site.</li>
+                        </ul>
+                        <p lang="hi">श्री राम मंदिर अयोध्या, उत्तर प्रदेश में स्थित है, जो भगवान राम का जन्मस्थान माना जाता है।</p>
+                    </div>
+                </article>
             </div>
-            <div class="temple-images">
-                <img src="https://uttarakhandtriptrek.com/wp-content/uploads/2023/11/Snapinsta.app_293175459_581754693537885_5742373109704896684_n_1024.jpg" alt="Kedarnath Temple Exterior">
-                <img src="https://i.pinimg.com/1200x/6f/9f/c8/6f9fc8cd1fb6760289fa4f199339b433.jpg" alt="Kedarnath Temple 3D">
-                <img src="https://wallpapers.com/images/high/kedarnath-temple-banners-4k-9pd6c84fjldyenjg.webp" alt="Kedarnath Himalayas">
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="main-container">
+                <h2>Our Mission</h2>
+                <p>We are dedicated to providing comprehensive and accurate information about India's most significant spiritual and architectural marvels. Our goal is to connect people with the rich cultural and historical tapestry that defines these sacred places.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <ul class="contact-info">
+                <li><i class="fas fa-map-marker-alt"></i> 123 Temple Road, New Delhi, India 110001</li>
+                <li><i class="fas fa-envelope"></i> info@sacredjourneys.com</li>
+                <li><i class="fas fa-phone-alt"></i> +91 98765 43210</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
             </div>
         </div>
-    </div>
-    <div id="mahakal" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <span class="decor-line"></span>
-                <div class="temple-title">Mahakal Temple</div>
-                <ul>
-                    <li><b>Location:</b> Ujjain, Madhya Pradesh, India</li>
-                    <li><b>Built:</b> Earliest references to 4th century BCE; present structure dates to 6th century AD</li>
-                    <li><b>Who Built:</b> Kumarasena and others</li>
-                    <li><b>How It Is Created:</b> Classic North Indian architecture with grand shikhar and intricate carvings.</li>
-                    <li><b>Special Details:</b> Known for its Bhasma aarti and Jyotirlinga significance.</li>
-                </ul>
-                <span class="decor-line"></span>
-            </div>
-            <div class="temple-images">
-                <img src="https://www.shutterstock.com/image-photo/mahakaleshwar-temple-ujjain-beautiful-view-260nw-1561660316.jpg" alt="Mahakaleshwar Temple">
-                <img src="https://www.pinterest.com/ideas/mahakal-pic-ujjain/932040517626/" alt="Mahakal Ujjain">
-                <img src="https://www.shutterstock.com/image-photo/ujjain-panorama-mahakaleshwar-temple-260nw-181291300.jpg" alt="Ujjain Mahakal temple panorama">
-            </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="#temples" class="footer-link">Temples</a>
+            <a href="#about" class="footer-link">About Us</a>
+            <a href="#contact" class="footer-link">Contact</a>
+            <a href="#" class="footer-link">Privacy Policy</a>
         </div>
-    </div>
-    <div id="amarnath" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <span class="decor-line"></span>
-                <div class="temple-title">Amarnath Guffa (Cave)</div>
-                <ul>
-                    <li><b>Location:</b> Jammu & Kashmir, India</li>
-                    <li><b>Built:</b> Worshipped since antiquity; natural cave formation</li>
-                    <li><b>Who Built:</b> Attributed to Maharishi Bhrigu and rediscovery by Buta Malik (legend)</li>
-                    <li><b>How It Is Created:</b> Natural cave containing an ice stalagmite Shiva Lingam</li>
-                    <li><b>Special Details:</b> Ice lingam size varies; important site of pilgrimage.</li>
-                </ul>
-                <span class="decor-line"></span>
-                <p lang="hi">अमरनाथ गुफा जम्मू-कश्मीर में स्थित एक प्राकृतिक गुफा है, जिसमें शिवलिंग हिमांशु से बना होता है।</p>
-            </div>
-            <div class="temple-images">
-                <img src="https://www.gettyimages.in/photos/amarnath-cave" alt="Amarnath Cave Exterior">
-                <img src="https://www.istockphoto.com/photos/amarnath-yatra" alt="Amarnath Yatra">
-                <img src="https://www.gettyimages.in/photos/amarnath-temple" alt="Amarnath Temple Interior">
-            </div>
-        </div>
-    </div>
-    <div id="ram" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <span class="decor-line"></span>
-                <div class="temple-title">Shree Ram Temple (Ayodhya)</div>
-                <ul>
-                    <li><b>Location:</b> Ayodhya, Uttar Pradesh, India</li>
-                    <li><b>Built:</b> Originally 11th century, reconstructed multiple times, current temple completed in 2024.</li>
-                    <li><b>Who Built:</b> Various historical patrons; present temple by Shri Ram Janmabhoomi Teerth Kshetra Trust.</li>
-                    <li><b>How It Is Created:</b> Traditional North Indian architecture with pink sandstone and intricate carvings.</li>
-                    <li><b>Special Details:</b> Birthplace of Lord Ram, grand pilgrimage site with millions visitors yearly.</li>
-                </ul>
-                <span class="decor-line"></span>
-            </div>
-            <div class="temple-images">
-                <img src="https://i.pinimg.com/1200x/89/b6/7c/89b67c46ca09610d089927f0a3c9bc4d.jpg" alt="Ayodhya Ram Mandir">
-                <img src="https://i.pinimg.com/736x/ef/d1/d8/efd1d893bd4ac81c03d97eaed5458bbf.jpg" alt="Ram Temple Ayodhya">
-                <img src="https://i.pinimg.com/1200x/5c/d1/f3/5cd1f30dd5edc329dd1ff6c55363fdaa.jpg" alt="Ayodhya Temple at Night">
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Image modal -->
-<div class="img-modal" id="imgModal" onclick="closeModal()">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img id="modalImg" src="" alt="">
-</div>
+    </footer>
 </body>
 </html>
