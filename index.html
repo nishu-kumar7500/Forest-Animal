@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Indian Temples Information / भारत के मंदिरों की जानकारी</title>
+    <title>भारत के कुछ विशेष और प्रसिद्ध मंदिर</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Google font for Devanagari -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
@@ -93,7 +93,7 @@
             margin: 4px 0 16px 0;
             color: #f4b640;
         }
-        /* Hindi font for elements marked with lang="hi" */
+        /* Hindi font only for manually added parts */
         [lang="hi"] {
             font-family: 'Noto Sans Devanagari', serif;
             font-weight: 500;
@@ -120,48 +120,26 @@
 </head>
 <body>
 <div class="container">
-    <h1>
-        <span lang="en">Indian Temples Information</span> / 
-        <span lang="hi">भारत के मंदिरों की जानकारी</span>
-    </h1>
+    <h1>Indian Temples Information</h1>
     <div class="tabs">
-        <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">
-            <span lang="en">Kedarnath Temple</span><br>
-            <span lang="hi">केदारनाथ मंदिर</span>
-        </button>
-        <button class="tab-button" id="mahakal-btn" onclick="showTab('mahakal')">
-            <span lang="en">Mahakal Temple</span><br>
-            <span lang="hi">महाकाल मंदिर</span>
-        </button>
-        <button class="tab-button" id="amarnath-btn" onclick="showTab('amarnath')">
-            <span lang="en">Amarnath Guffa</span><br>
-            <span lang="hi">अमरनाथ गुफा</span>
-        </button>
-        <button class="tab-button" id="ram-btn" onclick="showTab('ram')">
-            <span lang="en">Shree Ram Temple</span><br>
-            <span lang="hi">श्री राम मंदिर</span>
-        </button>
+        <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">Kedarnath Temple</button>
+        <button class="tab-button" id="mahakal-btn" onclick="showTab('mahakal')">Mahakal Temple</button>
+        <button class="tab-button" id="amarnath-btn" onclick="showTab('amarnath')">Amarnath Guffa</button>
+        <button class="tab-button" id="ram-btn" onclick="showTab('ram')">Shree Ram Temple</button>
     </div>
     <div id="kedarnath" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
-                <div class="temple-title">
-                    <span lang="en">Kedarnath Temple</span> / 
-                    <span lang="hi">केदारनाथ मंदिर</span>
-                </div>
+                <div class="temple-title">Kedarnath Temple</div>
                 <ul>
-                    <li><span lang="en"><b>Location:</b> Uttarakhand, India, in the Himalayas</span> / <span lang="hi"><b>स्थान:</b> उत्तराखंड, भारत, हिमालय में</span></li>
-                    <li><span lang="en"><b>Built:</b> Original structure attributed to <b>Pandavas (c.3100 BCE)</b>, present temple built in the 8th century by <b>Adi Shankaracharya</b></span> / 
-                        <span lang="hi"><b>निर्माण:</b> मूल संरचना पांडवों से जुड़ी (लगभग 3100 ई.पू.), वर्तमान मंदिर 8वीं सदी में <b>आदि शंकराचार्य</b> द्वारा निर्मित</span>
-                    </li>
-                    <li><span lang="en"><b>Who Built:</b> Pandavas (legend), Adi Shankaracharya (current temple)</span> / <span lang="hi"><b>निर्माता:</b> पांडव (कथा अनुसार), आदि शंकराचार्य (वर्तमान मंदिर)</span></li>
-                    <li><span lang="en"><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture...</span> / 
-                        <span lang="hi"><b>कैसे बना:</b> मंदिर बड़े पत्थर की पट्टियों से बना है, बिना सीमेंट के, प्राचीन हिमालयी वास्तुकला प्रदर्शित करता है...</span>
-                    </li>
-                    <li><span lang="en"><b>Special Details:</b> The temple survived many natural disasters and glaciation...</span> /
-                        <span lang="hi"><b>विशेष विवरण:</b> मंदिर ने कई प्राकृतिक आपदाओं का सामना किया है...</span>
-                    </li>
+                    <li><b>Location:</b> Uttarakhand, India, in the Himalayas</li>
+                    <li><b>Built:</b> Original structure attributed to <b>Pandavas (c.3100 BCE)</b>, present temple built in the 8th century by <b>Adi Shankaracharya</b></li>
+                    <li><b>Who Built:</b> Pandavas (legend), Adi Shankaracharya (current temple)</li>
+                    <li><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture.</li>
+                    <li><b>Special Details:</b> The temple survived many natural disasters and glaciation, signifying its remarkable engineering.</li>
                 </ul>
+                <!-- Example of Hindi inserted manually -->
+                <p lang="hi">केदारनाथ मंदिर उत्तराखंड में हिमालय की खूबसूरत घाटियों में स्थित है। यह मंदिर आदि शंकराचार्य द्वारा आठवीं शताब्दी में पुनर्निर्मित किया गया था।</p>
             </div>
             <div class="temple-images">
                 <img src="https://www.shutterstock.com/image-photo/landscape-view-kedarnath-temple-hindu-260nw-2340939897.jpg" alt="Kedarnath Temple Exterior">
@@ -173,31 +151,7 @@
     <div id="mahakal" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
-                <div class="temple-title">
-                    <span lang="en">Mahakal Temple</span> / 
-                    <span lang="hi">महाकाल मंदिर</span>
-                </div>
+                <div class="temple-title">Mahakal Temple</div>
                 <ul>
-                    <li><span lang="en"><b>Location:</b> Ujjain, Madhya Pradesh, India</span> / <span lang="hi"><b>स्थान:</b> उज्जैन, मध्य प्रदेश, भारत</span></li>
-                    <li><span lang="en"><b>Built:</b> Earliest references to 4th century BCE...</span> / <span lang="hi"><b>निर्माण:</b> प्रारंभिक संदर्भ 4ठी सदी ई.पू.; वर्तमान संरचना 6ठी सदी में बनी...</span></li>
-                    <li><span lang="en"><b>Who Built:</b> Kumarasena and others</span> / <span lang="hi"><b>निर्माता:</b> कुमारसेन आदि</span></li>
-                    <li><span lang="en"><b>How It Is Created:</b> Classic North Indian architecture...</span> / <span lang="hi"><b>कैसे बना:</b> उत्तर भारतीय वास्तुकला शैली...</span></li>
-                    <li><span lang="en"><b>Special Details:</b> Known for Bhasma Aarti and Jyotirlinga significance...</span> / <span lang="hi"><b>विशेष विवरण:</b> भस्म आरती और ज्योतिर्लिंग के लिए प्रसिद्ध...</span></li>
-                </ul>
-            </div>
-            <div class="temple-images">
-                <img src="https://www.shutterstock.com/image-photo/mahakaleshwar-temple-ujjain-beautiful-view-260nw-1561660316.jpg" alt="Mahakaleshwar Temple">
-                <img src="https://www.pinterest.com/ideas/mahakal-pic-ujjain/932040517626/" alt="Mahakal Ujjain">
-                <img src="https://www.shutterstock.com/image-photo/ujjain-panorama-mahakaleshwar-temple-260nw-181291300.jpg" alt="Ujjain Mahakal temple panorama">
-            </div>
-        </div>
-    </div>
-    <div id="amarnath" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <div class="temple-title">
-                    <span lang="en">Amarnath Guffa (Cave)</span> /
-                    <span lang="hi">अमरनाथ गुफा</span>
-                </div>
-                <ul>
-                    <li><span lang="en"><b>Location:</b> Jammu & Kashmir, India</span> / <span lang
+                    <li><b>Location:</b> Ujjain, Madhya Pradesh, India</li>
+                    <li><b>Built:</b> Earliest references to 4th century BCE; present structure dates to 6th century
