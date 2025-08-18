@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<htm lang="hi">
 <head>
     <meta charset="UTF-8">
-    <title>भारत के कुछ प्रमुख और विशेष मंदिर (तीर्थ स्थल) जिन्हें "विशेष मंदिर" कहा जाता है, उनमें शामिल हैं:</title>
+    <title>Indian Temples Information / भारत के मंदिरों की जानकारी</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google font for Devanagari -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap');
         body {
             font-family: 'Montserrat', sans-serif;
             margin: 0;
@@ -67,6 +67,12 @@
             flex: 1 1 350px;
             min-width: 350px;
             padding-right: 24px;
+            font-size: 1.05em;
+            line-height: 1.5em;
+            color: #333;
+        }
+        .temple-info ul {
+            padding-left: 20px;
         }
         .temple-images {
             flex: 0 0 340px;
@@ -86,6 +92,12 @@
             font-size: 2em;
             margin: 4px 0 16px 0;
             color: #f4b640;
+        }
+        /* Hindi font for elements marked with lang="hi" */
+        [lang="hi"] {
+            font-family: 'Noto Sans Devanagari', serif;
+            font-weight: 500;
+            color: #4B1789;
         }
         @media (max-width: 900px) {
             .container { padding: 12px 6px; }
@@ -108,23 +120,47 @@
 </head>
 <body>
 <div class="container">
-    <h1>Indian Temples Information</h1>
+    <h1>
+        <span lang="en">Indian Temples Information</span> / 
+        <span lang="hi">भारत के मंदिरों की जानकारी</span>
+    </h1>
     <div class="tabs">
-        <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">Kedarnath Temple</button>
-        <button class="tab-button" id="mahakal-btn" onclick="showTab('mahakal')">Mahakal Temple</button>
-        <button class="tab-button" id="amarnath-btn" onclick="showTab('amarnath')">Amarnath Guffa</button>
-        <button class="tab-button" id="ram-btn" onclick="showTab('ram')">Shree Ram Temple</button>
+        <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">
+            <span lang="en">Kedarnath Temple</span><br>
+            <span lang="hi">केदारनाथ मंदिर</span>
+        </button>
+        <button class="tab-button" id="mahakal-btn" onclick="showTab('mahakal')">
+            <span lang="en">Mahakal Temple</span><br>
+            <span lang="hi">महाकाल मंदिर</span>
+        </button>
+        <button class="tab-button" id="amarnath-btn" onclick="showTab('amarnath')">
+            <span lang="en">Amarnath Guffa</span><br>
+            <span lang="hi">अमरनाथ गुफा</span>
+        </button>
+        <button class="tab-button" id="ram-btn" onclick="showTab('ram')">
+            <span lang="en">Shree Ram Temple</span><br>
+            <span lang="hi">श्री राम मंदिर</span>
+        </button>
     </div>
     <div id="kedarnath" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
-                <div class="temple-title">Kedarnath Temple</div>
+                <div class="temple-title">
+                    <span lang="en">Kedarnath Temple</span> / 
+                    <span lang="hi">केदारनाथ मंदिर</span>
+                </div>
                 <ul>
-                    <li><b>Location:</b> Uttarakhand, India, in the Himalayas</li>
-                    <li><b>Built:</b> Original structure attributed to <b>Pandavas (c.3100 BCE)</b>, present temple built in the 8th century by <b>Adi Shankaracharya</b></li>
-                    <li><b>Who Built:</b> Pandavas (legend), Adi Shankaracharya (current temple)</li>
-                    <li><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture. It stands at 11,755ft, surrounded by scenic peaks. The lingam within is a unique hump-shaped rock, symbolizing Lord Shiva.</li>
-                    <li><b>Special Details:</b> The temple survived many natural disasters and glaciation, signifying its remarkable engineering. It has mythological importance, as Lord Shiva is believed to have manifested here for the Pandavas[1][3].</li>
+                    <li><span lang="en"><b>Location:</b> Uttarakhand, India, in the Himalayas</span> / <span lang="hi"><b>स्थान:</b> उत्तराखंड, भारत, हिमालय में</span></li>
+                    <li><span lang="en"><b>Built:</b> Original structure attributed to <b>Pandavas (c.3100 BCE)</b>, present temple built in the 8th century by <b>Adi Shankaracharya</b></span> / 
+                        <span lang="hi"><b>निर्माण:</b> मूल संरचना पांडवों से जुड़ी (लगभग 3100 ई.पू.), वर्तमान मंदिर 8वीं सदी में <b>आदि शंकराचार्य</b> द्वारा निर्मित</span>
+                    </li>
+                    <li><span lang="en"><b>Who Built:</b> Pandavas (legend), Adi Shankaracharya (current temple)</span> / <span lang="hi"><b>निर्माता:</b> पांडव (कथा अनुसार), आदि शंकराचार्य (वर्तमान मंदिर)</span></li>
+                    <li><span lang="en"><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture...</span> / 
+                        <span lang="hi"><b>कैसे बना:</b> मंदिर बड़े पत्थर की पट्टियों से बना है, बिना सीमेंट के, प्राचीन हिमालयी वास्तुकला प्रदर्शित करता है...</span>
+                    </li>
+                    <li><span lang="en"><b>Special Details:</b> The temple survived many natural disasters and glaciation...</span> /
+                        <span lang="hi"><b>विशेष विवरण:</b> मंदिर ने कई प्राकृतिक आपदाओं का सामना किया है...</span>
+                    </li>
                 </ul>
             </div>
             <div class="temple-images">
@@ -137,13 +173,16 @@
     <div id="mahakal" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
-                <div class="temple-title">Mahakal Temple</div>
+                <div class="temple-title">
+                    <span lang="en">Mahakal Temple</span> / 
+                    <span lang="hi">महाकाल मंदिर</span>
+                </div>
                 <ul>
-                    <li><b>Location:</b> Ujjain, Madhya Pradesh, India</li>
-                    <li><b>Built:</b> Earliest references to 4th century BCE; present structure dates to <b>6th century AD</b> by Kumarasena, with major reconstructions in the <b>12th and 18th centuries</b></li>
-                    <li><b>Who Built:</b> Kumarasena (son of king Chandpradyot), rebuilt by Kings Udayaditya, Naravarman, and Maratha commander Ranoji Shinde[6][9]</li>
-                    <li><b>How It Is Created:</b> The temple exhibits classic North Indian architecture with a grand shikhar (spire), massive stone walls, and intricate carvings. The idol faces south, unique among the Jyotirlingas.</li>
-                    <li><b>Special Details:</b> Mahakaleshwar is renowned for its Bhasma aarti and as both a Jyotirlinga and Shakti Peeth[16]. It survived various destruction phases in medieval periods yet remains a center of Hindu faith.</li>
+                    <li><span lang="en"><b>Location:</b> Ujjain, Madhya Pradesh, India</span> / <span lang="hi"><b>स्थान:</b> उज्जैन, मध्य प्रदेश, भारत</span></li>
+                    <li><span lang="en"><b>Built:</b> Earliest references to 4th century BCE...</span> / <span lang="hi"><b>निर्माण:</b> प्रारंभिक संदर्भ 4ठी सदी ई.पू.; वर्तमान संरचना 6ठी सदी में बनी...</span></li>
+                    <li><span lang="en"><b>Who Built:</b> Kumarasena and others</span> / <span lang="hi"><b>निर्माता:</b> कुमारसेन आदि</span></li>
+                    <li><span lang="en"><b>How It Is Created:</b> Classic North Indian architecture...</span> / <span lang="hi"><b>कैसे बना:</b> उत्तर भारतीय वास्तुकला शैली...</span></li>
+                    <li><span lang="en"><b>Special Details:</b> Known for Bhasma Aarti and Jyotirlinga significance...</span> / <span lang="hi"><b>विशेष विवरण:</b> भस्म आरती और ज्योतिर्लिंग के लिए प्रसिद्ध...</span></li>
                 </ul>
             </div>
             <div class="temple-images">
@@ -156,41 +195,9 @@
     <div id="amarnath" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
-                <div class="temple-title">Amarnath Guffa (Cave)</div>
+                <div class="temple-title">
+                    <span lang="en">Amarnath Guffa (Cave)</span> /
+                    <span lang="hi">अमरनाथ गुफा</span>
+                </div>
                 <ul>
-                    <li><b>Location:</b> Jammu & Kashmir, India, at 3,888m altitude</li>
-                    <li><b>Built:</b> The cave has been worshipped since antiquity; written references date to approx. 300 BCE and later[7][29]</li>
-                    <li><b>Who Built:</b> Attributed in legend to discovery by Maharishi Bhrigu and rediscovered by Buta Malik (folk legend)</li>
-                    <li><b>How It Is Created:</b> Natural cave formed in the Himalayas, containing an ice stalagmite (Shiva Lingam) created by freezing of water drops. Two smaller stalagmites are thought to represent Parvati and Ganesha.</li>
-                    <li><b>Special Details:</b> The lingam's size changes with the moon phases. The cave is open for pilgrims only in summer and is a major site for the Amarnath Yatra. It is also a Shakti Peeth[7][29].</li>
-                </ul>
-            </div>
-            <div class="temple-images">
-                <img src="https://www.gettyimages.in/photos/amarnath-cave" alt="Amarnath Cave Exterior">
-                <img src="https://www.istockphoto.com/photos/amarnath-yatra" alt="Amarnath Yatra">
-                <img src="https://www.gettyimages.in/photos/amarnath-temple" alt="Amarnath Temple Interior">
-            </div>
-        </div>
-    </div>
-    <div id="ram" class="tab-content">
-        <div class="temple-details">
-            <div class="temple-info">
-                <div class="temple-title">Shree Ram Temple (Ayodhya)</div>
-                <ul>
-                    <li><b>Location:</b> Ayodhya, Uttar Pradesh, India</li>
-                    <li><b>Built:</b> Originally 11th century, reconstructed over centuries; present grand temple inaugurated in <b>January 2024</b>.</li>
-                    <li><b>Who Built:</b> Original structure by devotees of Lord Ram; demolished and rebuilt over centuries. Present temple constructed by Shree Ram Janmbhoomi Teerth Kshetra Trust following Supreme Court verdict in 2019[11][12].</li>
-                    <li><b>How It Is Created:</b> The temple uses traditional North Indian stone architecture with massive pillars, intricate carvings, and a huge main sanctum. It spans 360ft length, 235ft width, and uses pink sandstone.</li>
-                    <li><b>Special Details:</b> The temple stands at Ram Janmabhoomi (birthplace of Lord Ram) and symbolizes both spiritual devotion and centuries-long cultural struggles. Millions visit each year for darshan of Lord Ram[11][12][14].</li>
-                </ul>
-            </div>
-            <div class="temple-images">
-                <img src="https://www.shutterstock.com/image-photo/ayodhya-ram-mandir-temple-beautiful-view-260nw-2368587987.jpg" alt="Ayodhya Ram Mandir">
-                <img src="https://www.gettyimages.in/photos/ram-temple" alt="Ram Temple Ayodhya">
-                <img src="https://www.shutterstock.com/image-photo/ayodhya-temple-night-view-260nw-2362334563.jpg" alt="Ayodhya Temple at Night">
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>
+                    <li><span lang="en"><b>Location:</b> Jammu & Kashmir, India</span> / <span lang
