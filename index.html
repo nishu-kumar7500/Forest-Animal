@@ -13,8 +13,6 @@
 :root {
   --primary-color: #6a008a;
   --secondary-color: #fca311;
-  --background-gradient-start: #f8f0ff;
-  --background-gradient-end: #e6e6fa;
   --text-color: #333;
   --light-text-color: #fff;
   --glass-bg: rgba(255, 255, 255, 0.15);
@@ -191,6 +189,52 @@ body {
   color: #444;
 }
 
+/* Hindi text */
+.temple-card-info p[lang='hi'] {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  margin-top: 1rem;
+  color: #555;
+}
+
+/* ================================
+   ABOUT SECTION
+==================================*/
+.about-section {
+  background: var(--primary-color);
+  color: var(--light-text-color);
+  padding: 4rem 2rem;
+  border-radius: var(--border-radius);
+  max-width: 900px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+/* ================================
+   FOOTER
+==================================*/
+.footer {
+  background-color: #1a1a1a;
+  color: #ccc;
+  padding: 3rem 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 2.5rem;
+  border-top: 4px solid var(--secondary-color);
+}
+.footer-link {
+  color: #bbb;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 0.7rem;
+  transition: color 0.3s ease;
+}
+.footer-link:hover {
+  color: var(--secondary-color);
+}
+
 /* ================================
    BACK TO TOP BUTTON
 ==================================*/
@@ -226,31 +270,97 @@ body {
 </header>
 
 <main>
+  <!-- HERO -->
   <section class="hero">
     <h1>Discover India's Divine Heritage</h1>
     <p>Explore the history, architecture, and spiritual significance of India's most revered temples.</p>
     <a href="#temples" class="hero-button">Start Your Journey</a>
   </section>
 
+  <!-- TEMPLES -->
   <section id="temples">
     <h2 style="text-align:center;">Featured Temples</h2>
     <div class="temple-cards-container">
-      <!-- Keep your temple cards here (same structure as before) -->
+      <!-- Temple Cards (kept intact from your original code) -->
+      <article class="temple-card">
+        <img src="https://uttarakhandtriptrek.com/wp-content/uploads/2023/11/Snapinsta.app_293175459_581754693537885_5742373109704896684_n_1024.jpg" alt="Kedarnath Temple" class="temple-card-image" />
+        <h3 class="temple-card-title">Kedarnath Temple</h3>
+        <ul class="temple-card-info">
+          <li><b>Location:</b> Uttarakhand, India</li>
+          <li><b>Built:</b> c.3100 BCE</li>
+          <li><b>Who Built:</b> Adi Shankaracharya (current temple)</li>
+          <li><b>Special:</b> Survived natural disasters</li>
+        </ul>
+        <p lang="hi">केदारनाथ मंदिर उत्तराखंड की खूबसूरत घाटियों में स्थित है।</p>
+      </article>
+
+      <article class="temple-card">
+        <img src="https://www.shutterstock.com/image-photo/mahakaleshwar-temple-ujjain-beautiful-view-260nw-1561660316.jpg" alt="Mahakal Temple" class="temple-card-image" />
+        <h3 class="temple-card-title">Mahakal Temple</h3>
+        <ul class="temple-card-info">
+          <li><b>Location:</b> Ujjain, Madhya Pradesh</li>
+          <li><b>Built:</b> 4th century BCE</li>
+          <li><b>Who Built:</b> Kumarasena and others</li>
+          <li><b>Special:</b> Famous for Bhasma aarti</li>
+        </ul>
+        <p lang="hi">महाकाल मंदिर उज्जैन, मध्य प्रदेश में स्थित है।</p>
+      </article>
+
+      <article class="temple-card">
+        <img src="https://source.unsplash.com/1600x900/?amarnath-cave-temple" alt="Amarnath Guffa" class="temple-card-image" />
+        <h3 class="temple-card-title">Amarnath Guffa</h3>
+        <ul class="temple-card-info">
+          <li><b>Location:</b> Jammu & Kashmir</li>
+          <li><b>Built:</b> Natural cave</li>
+          <li><b>Who Built:</b> Attributed to Maharishi Bhrigu</li>
+          <li><b>Special:</b> Ice Shiva Lingam</li>
+        </ul>
+        <p lang="hi">अमरनाथ गुफा जम्मू-कश्मीर में स्थित एक प्राकृतिक गुफा है।</p>
+      </article>
+
+      <article class="temple-card">
+        <img src="https://i.pinimg.com/1200x/89/b6/7c/89b67c46ca09610d089927f0a3c9bc4d.jpg" alt="Shree Ram Temple Ayodhya" class="temple-card-image" />
+        <h3 class="temple-card-title">Shree Ram Temple</h3>
+        <ul class="temple-card-info">
+          <li><b>Location:</b> Ayodhya, Uttar Pradesh</li>
+          <li><b>Built:</b> 2024</li>
+          <li><b>Who Built:</b> Ram Janmabhoomi Trust</li>
+          <li><b>Special:</b> Birthplace of Lord Ram</li>
+        </ul>
+        <p lang="hi">श्री राम मंदिर अयोध्या, उत्तर प्रदेश में स्थित है।</p>
+      </article>
     </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <h2>Our Mission</h2>
+    <p>We are dedicated to providing comprehensive and accurate information about India's spiritual and architectural marvels.</p>
   </section>
 </main>
 
-<!-- Back to Top -->
+<!-- FOOTER -->
+<footer id="contact" class="footer">
+  <div>
+    <h3>Contact Us</h3>
+    <p>123 Temple Road, New Delhi</p>
+    <p>Email: info@sacredjourneys.com</p>
+    <p>Phone: +91 98765 43210</p>
+  </div>
+  <div>
+    <h3>Follow Us</h3>
+    <a href="#" class="footer-link">Facebook</a>
+    <a href="#" class="footer-link">Instagram</a>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
 <button id="backToTop"><i class="fas fa-arrow-up"></i></button>
 
 <script>
 const backToTop = document.getElementById("backToTop");
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 300) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
-  }
+  backToTop.style.display = window.scrollY > 300 ? "block" : "none";
 });
 backToTop.addEventListener("click", () => {
   window.scrollTo({top: 0, behavior: "smooth"});
