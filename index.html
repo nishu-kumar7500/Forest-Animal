@@ -12,7 +12,6 @@
   --secondary-color: #fca311;
   --glass-bg: rgba(255, 255, 255, 0.15);
   --glass-border: rgba(255, 255, 255, 0.3);
-  --transition-speed: 0.4s;
 }
 
 body {
@@ -50,7 +49,6 @@ body {
   color: white;
   font-weight: 600;
   text-decoration: none;
-  position: relative;
 }
 .nav-link:hover {
   color: var(--secondary-color);
@@ -134,44 +132,43 @@ body {
   text-align: left;
 }
 
-/* About Us */
+/* Sections */
+section {
+  padding: 4rem 2rem;
+}
 #about {
-  padding: 4rem 2rem;
   background: white;
-  text-align: center;
+  border-radius: 15px;
+  margin: 2rem;
 }
-#about h2 {
-  color: var(--primary-color);
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-#about p {
-  max-width: 800px;
-  margin: auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-/* Contact */
 #contact {
-  padding: 4rem 2rem;
-  background: var(--glass-bg);
-  text-align: center;
+  background: white;
+  border-radius: 15px;
+  margin: 2rem;
 }
-#contact h2 {
-  color: var(--primary-color);
-  font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-.contact-info {
+#contact p {
   font-size: 1.1rem;
-  line-height: 2;
 }
-.contact-info i {
-  color: var(--secondary-color);
-  margin-right: 8px;
+.contact-form {
+  margin-top: 1rem;
+}
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.contact-form button {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+.contact-form button:hover {
+  background: #55006c;
 }
 </style>
 </head>
@@ -203,6 +200,7 @@ body {
   <section id="temples">
     <div class="temple-cards-container">
 
+      <!-- Example Card 1 -->
       <div class="temple-card south famous" onclick="window.open('https://en.wikipedia.org/wiki/Brihadeeswarar_Temple','_blank')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg" alt="Brihadeeswarar Temple">
         <h3>Brihadeeswarar Temple</h3>
@@ -213,6 +211,7 @@ body {
         </ul>
       </div>
 
+      <!-- Example Card 2 -->
       <div class="temple-card north famous" onclick="window.open('https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple','_blank')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg" alt="Kashi Vishwanath Temple">
         <h3>Kashi Vishwanath</h3>
@@ -223,6 +222,7 @@ body {
         </ul>
       </div>
 
+      <!-- Example Card 3 -->
       <div class="temple-card south" onclick="window.open('https://en.wikipedia.org/wiki/Meenakshi_Temple','_blank')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg" alt="Meenakshi Temple">
         <h3>Meenakshi Amman Temple</h3>
@@ -233,6 +233,7 @@ body {
         </ul>
       </div>
 
+      <!-- Example Card 4 -->
       <div class="temple-card north" onclick="window.open('https://en.wikipedia.org/wiki/Kedarnath_Temple','_blank')">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg" alt="Kedarnath Temple">
         <h3>Kedarnath Temple</h3>
@@ -246,23 +247,26 @@ body {
     </div>
   </section>
 
-  <!-- About Us -->
+  <!-- About Us Section -->
   <section id="about">
     <h2>About Us</h2>
-    <p>
-      Sacred Journeys is a digital initiative to showcase the spiritual and cultural richness of India. 
-      We bring together information about temples, pilgrimages, and architectural wonders to help devotees and travelers connect with the divine heritage of our country.
-    </p>
+    <p>At <strong>Sacred Journeys</strong>, we are passionate about preserving and sharing the cultural and spiritual heritage of India. Our mission is to make knowledge about ancient temples accessible to all, fostering curiosity, devotion, and respect for history.</p>
+    <p>We bring together history, architecture, and spirituality into one platform where you can explore India's most revered temples.</p>
   </section>
 
-  <!-- Contact -->
+  <!-- Contact Section -->
   <section id="contact">
     <h2>Contact Us</h2>
-    <div class="contact-info">
-      <p><i class="fas fa-map-marker-alt"></i> Varanasi, Uttar Pradesh, India</p>
-      <p><i class="fas fa-phone"></i> +91 98765 43210</p>
-      <p><i class="fas fa-envelope"></i> info@sacredjourneys.in</p>
-    </div>
+    <p><i class="fas fa-map-marker-alt"></i> Address: Delhi, India</p>
+    <p><i class="fas fa-phone"></i> Phone: +91-9876543210</p>
+    <p><i class="fas fa-envelope"></i> Email: info@sacredjourneys.com</p>
+
+    <form class="contact-form">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 </main>
 
@@ -274,6 +278,7 @@ function filterSelection(category) {
     cards[i].style.display = cards[i].className.indexOf(category) > -1 ? "block" : "none";
   }
 }
+// Show all by default
 filterSelection("all");
 </script>
 </body>
