@@ -4,94 +4,183 @@
     <meta charset="UTF-8">
     <title>Indian Temples Information</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Google font for Devanagari -->
+    <!-- Google font for Devanagari and Montserrat -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Noto+Sans+Devanagari&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Montserrat', 'Noto Sans Devanagari', sans-serif;
             margin: 0;
-            background: linear-gradient(135deg, #e9e7fd 0%, #fbeee0 100%);
+            min-height: 100vh;
+            background: linear-gradient(120deg, #eeddcc 0%, #e9e7fd 55%, #fbeee0 100%);
+            transition: background .4s;
+            /* Custom scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: #f4b640 #e9e7fd;
+        }
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: #e9e7fd;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f4b640;
+            border-radius: 7px;
         }
         .container {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 18px;
-            box-shadow: 0 8px 24px 0 rgba(72, 63, 138, .16);
-            padding: 20px 40px 40px 40px;
+            max-width: 1180px;
+            margin: 48px auto;
+            background: rgba(255,255,255,0.7);
+            border-radius: 22px;
+            box-shadow: 0 12px 32px rgba(72,63,138,.15), 0 1.5px 20px #f4b64088;
+            padding: 38px 54px 54px 54px;
+            position: relative;
+            backdrop-filter: blur(7px) saturate(112%);
+        }
+        .header-svg {
+            position: absolute;
+            top: -38px; left: 32px;
+            height: 40px;
+            fill: #f4b640;
+            opacity: 0.64;
         }
         h1 {
             text-align: center;
-            font-size: 2.8em;
-            color: #4B1789;
-            margin-bottom: 7px;
+            font-size: 3.1em;
+            color: #331a53;
+            margin-bottom: 18px;
+            font-weight: 800;
+            position: relative;
+            letter-spacing: 2px;
         }
         .tabs {
             display: flex;
-            margin-bottom: 28px;
             justify-content: center;
+            gap: 0.5em;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 2;
         }
         .tab-button {
-            background: #4B1789;
+            background: linear-gradient(90deg,#4B1789 55%,#56309e 100%);
             color: #fff;
             border: none;
-            border-radius: 14px 14px 0 0;
-            padding: 16px 44px;
-            margin: 0 9px;
-            font-size: 1.2em;
+            border-radius: 20px 20px 0 0;
+            padding: 18px 48px;
+            font-size: 1.32em;
+            margin: 0 7px;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.2s;
-            box-shadow: 0 2px 8px rgba(72, 63, 138, .14);
+            box-shadow: 0 4px 10px rgba(72,63,138,.12),0 1px 7px #f4b64033;
+            outline: none;
+            position: relative;
+            transition: background .30s, transform .14s;
+            letter-spacing: 1px;
+        }
+        .tab-button:hover {
+            background: linear-gradient(90deg,#f4b640 21%, #4B1789 80%);
+            color: #222;
+            transform: translateY(-3px) scale(1.04);
         }
         .tab-button.active {
-            background: #f4b640;
+            background: linear-gradient(90deg,#f4b640 42%, #fff2e0 100%);
             color: #4B1789;
+            box-shadow: 0 12px 42px #f4b6401a,0 1px 7px #56309e22;
         }
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s both;
+            animation: fadeIn 0.5s both;
         }
         .tab-content.active {
             display: block;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px);}
-            to { opacity: 1; transform: translateY(0);}
+            from {opacity:0; transform:translateY(26px);}
+            to {opacity:1; transform:translateY(0);}
         }
         .temple-details {
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
+            gap: 24px;
         }
         .temple-info {
-            flex: 1 1 350px;
+            flex: 1 1 380px;
             min-width: 350px;
-            padding-right: 24px;
-            font-size: 1.05em;
-            line-height: 1.5em;
-            color: #333;
+            padding-right: 32px;
+            font-size: 1.175em;
+            color: #2a233b;
+            background: rgba(255,255,255,0.68);
+            border-radius: 22px;
+            box-shadow: 0 4px 23px #e7dced2a;
+            padding: 24px 32px 24px 24px;
+            margin-bottom:2vw;
         }
-        .temple-info ul {
-            padding-left: 20px;
+        .temple-info ul {padding-left: 24px;}
+        .temple-info li {
+            margin-bottom: 7px;
+        }
+        .temple-title {
+            font-size: 2.5em;
+            margin: 4px 0 18px 0;
+            color: #f4b640;
+            letter-spacing: 1px;
+            font-weight: bold;
+            text-shadow: 0 1px 9px #e9e7fd, 0 1px 2px #331a5380;
         }
         .temple-images {
-            flex: 0 0 340px;
-            min-width: 300px;
+            flex: 1 1 340px;
+            min-width: 320px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
+            padding-top:12px;
         }
         .temple-images img {
             width: 100%;
-            height: 180px;
+            height: 210px;
             object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(72, 63, 138, .17);
+            border-radius: 15px;
+            box-shadow: 0 2px 24px #4b17891a, 0 1px 18px #f4b6403a;
+            cursor: pointer;
+            transition:.19s transform,.27s box-shadow;
         }
-        .temple-title {
-            font-size: 2em;
-            margin: 4px 0 16px 0;
-            color: #f4b640;
+        .temple-images img:hover {
+            transform: scale(1.05) translateY(-4px);
+            box-shadow: 0 12px 32px #331a5322, 0 1px 16px #f4b6403d;
+        }
+        .img-modal {
+            display:none;
+            position: fixed;
+            z-index: 22;
+            left: 0; top:0;
+            width:100%; height:100%;
+            align-items: center;
+            justify-content: center;
+            background: rgba(25,21,48,.55);
+            backdrop-filter: blur(8px) brightness(1.04);
+            animation: modalIn 0.23s both;
+        }
+        @keyframes modalIn {
+            from {opacity:0;}
+            to {opacity:1;}
+        }
+        .img-modal img {
+            max-width: 80vw;
+            max-height: 78vh;
+            border-radius: 18px;
+            box-shadow: 0 16px 48px #331a5377, 0 1px 18px #f4b6405a;
+        }
+        .img-modal .close {
+            position: absolute;
+            top:32px; right:60px;
+            background: #f4b640;
+            color: #4B1789;
+            font-size: 2.8em;
+            border-radius:50%;
+            padding: 0 20px 10px 20px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px #4B178951;
+            font-weight: bold;
+            border:2px solid #fff7e0;
         }
         /* Hindi font only for manually added parts */
         [lang="hi"] {
@@ -99,14 +188,30 @@
             font-weight: 500;
             color: #4B1789;
         }
-        @media (max-width: 900px) {
-            .container { padding: 12px 6px; }
-            .temple-details { flex-direction: column; }
-            .temple-info, .temple-images{ padding-right: 0; min-width: 1px; }
-            h1 { font-size: 2em;}
+        /* Decorative lines */
+        .decor-line {
+            display:block;
+            width: 54px;
+            height:4px;
+            background:#331a53;
+            margin: 9px 0 11px 0;
+            border-radius:9px;
+            opacity:0.13;
+        }
+        @media (max-width: 1000px) {
+            .container{ padding:20px 2vw;}
+            h1{ font-size:2.4em; }
+            .tabs{ flex-direction:row;}
+        }
+        @media (max-width:750px) {
+            .container{ padding:8px 1vw;}
+            .temple-details{ flex-direction:column;}
+            .temple-info, .temple-images{ padding:0 1vw; min-width:1px;}
+            h1{ font-size:1.45em;}
         }
     </style>
     <script>
+        // Tabs switching
         function showTab(tabId) {
             let tabs = document.querySelectorAll('.tab-content');
             let buttons = document.querySelectorAll('.tab-button');
@@ -116,10 +221,29 @@
             document.getElementById(tabId + '-btn').classList.add('active');
         }
         window.onload = function() { showTab('kedarnath'); }
+
+        // Modal image gallery
+        function openModal(src, alt) {
+            var modal = document.getElementById("imgModal");
+            var img = document.getElementById("modalImg");
+            img.src = src;
+            img.alt = alt;
+            modal.style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("imgModal").style.display = "none";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.temple-images img').forEach(function(img){
+                img.onclick = function() { openModal(img.src, img.alt);}
+            });
+        });
     </script>
 </head>
 <body>
 <div class="container">
+    <!-- Decorative SVG Icon (Lotus) -->
+    <svg class="header-svg" viewBox="0 0 64 32"><path d="M32 32q4-14 16-18a11 11 0 0 0-16 16 11 11 0 0 0-16-16Q28 18 32 32" /></svg>
     <h1>भारत के कुछ विशेष और प्रसिद्ध मंदिर</h1>
     <div class="tabs">
         <button class="tab-button" id="kedarnath-btn" onclick="showTab('kedarnath')">Kedarnath Temple</button>
@@ -130,6 +254,7 @@
     <div id="kedarnath" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
+                <span class="decor-line"></span>
                 <div class="temple-title">Kedarnath Temple</div>
                 <ul>
                     <li><b>Location:</b> Uttarakhand, India, in the Himalayas</li>
@@ -138,7 +263,7 @@
                     <li><b>How It Is Created:</b> The temple is made of massive stone slabs, assembled without mortar, exhibiting ancient Himalayan architecture.</li>
                     <li><b>Special Details:</b> The temple survived many natural disasters and glaciation, signifying its remarkable engineering.</li>
                 </ul>
-                <!-- Example of Hindi inserted manually -->
+                <span class="decor-line"></span>
                 <p lang="hi">केदारनाथ मंदिर उत्तराखंड में हिमालय की खूबसूरत घाटियों में स्थित है। यह मंदिर आदि शंकराचार्य द्वारा आठवीं शताब्दी में पुनर्निर्मित किया गया था।</p>
             </div>
             <div class="temple-images">
@@ -151,6 +276,7 @@
     <div id="mahakal" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
+                <span class="decor-line"></span>
                 <div class="temple-title">Mahakal Temple</div>
                 <ul>
                     <li><b>Location:</b> Ujjain, Madhya Pradesh, India</li>
@@ -159,6 +285,7 @@
                     <li><b>How It Is Created:</b> Classic North Indian architecture with grand shikhar and intricate carvings.</li>
                     <li><b>Special Details:</b> Known for its Bhasma aarti and Jyotirlinga significance.</li>
                 </ul>
+                <span class="decor-line"></span>
             </div>
             <div class="temple-images">
                 <img src="https://www.shutterstock.com/image-photo/mahakaleshwar-temple-ujjain-beautiful-view-260nw-1561660316.jpg" alt="Mahakaleshwar Temple">
@@ -170,6 +297,7 @@
     <div id="amarnath" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
+                <span class="decor-line"></span>
                 <div class="temple-title">Amarnath Guffa (Cave)</div>
                 <ul>
                     <li><b>Location:</b> Jammu & Kashmir, India</li>
@@ -178,7 +306,7 @@
                     <li><b>How It Is Created:</b> Natural cave containing an ice stalagmite Shiva Lingam</li>
                     <li><b>Special Details:</b> Ice lingam size varies; important site of pilgrimage.</li>
                 </ul>
-                <!-- Another example of manual Hindi -->
+                <span class="decor-line"></span>
                 <p lang="hi">अमरनाथ गुफा जम्मू-कश्मीर में स्थित एक प्राकृतिक गुफा है, जिसमें शिवलिंग हिमांशु से बना होता है।</p>
             </div>
             <div class="temple-images">
@@ -191,6 +319,7 @@
     <div id="ram" class="tab-content">
         <div class="temple-details">
             <div class="temple-info">
+                <span class="decor-line"></span>
                 <div class="temple-title">Shree Ram Temple (Ayodhya)</div>
                 <ul>
                     <li><b>Location:</b> Ayodhya, Uttar Pradesh, India</li>
@@ -199,6 +328,7 @@
                     <li><b>How It Is Created:</b> Traditional North Indian architecture with pink sandstone and intricate carvings.</li>
                     <li><b>Special Details:</b> Birthplace of Lord Ram, grand pilgrimage site with millions visitors yearly.</li>
                 </ul>
+                <span class="decor-line"></span>
             </div>
             <div class="temple-images">
                 <img src="https://www.shutterstock.com/image-photo/ayodhya-ram-mandir-temple-beautiful-view-260nw-2368587987.jpg" alt="Ayodhya Ram Mandir">
@@ -207,6 +337,11 @@
             </div>
         </div>
     </div>
+</div>
+<!-- Image modal -->
+<div class="img-modal" id="imgModal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="" alt="">
 </div>
 </body>
 </html>
