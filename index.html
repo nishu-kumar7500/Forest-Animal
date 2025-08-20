@@ -129,7 +129,7 @@
 <header class="header">
   <nav class="nav">
     <a class="brand" href="#">
-      <span class="brand-logo"><i class="fa-solid fa-temple"></i></span>
+      <span class="brand-logo"><i class="fa-solid fa-om"></i></span>
       <span class="brand-title">Sacred Journeys</span>
     </a>
 
@@ -150,9 +150,9 @@
 <section class="hero">
   <div class="hero-wrap">
     <div>
-      <p class="muted" style="font-weight:700; letter-spacing:.2em; text-transform:uppercase">Curated Temple Trails</p>
-      <h1 class="headline">Discover India's Divine Heritage, one temple at a time.</h1>
-      <p class="sub">Browse iconic shrines, sacred architecture and living traditions. Build your wishlist and plan immersive journeys inspired by history and devotion.</p>
+      <p class="muted" style="font-weight:700; letter-spacing:.2em; text-transform:uppercase">Hindu Temple Explorer</p>
+      <h1 class="headline">Explore the sacred geography of Sanātana Dharma.</h1>
+      <p class="sub">Only Hindu temples and traditions—discover jyotirlingas, shakti peethas, and Char Dham yatras with authentic details and beautiful visuals.</p>
 
       <div class="search-card" role="search">
         <div class="field">
@@ -175,6 +175,8 @@
             <option value="all">Any</option>
             <option value="famous">Famous</option>
             <option value="jyotirlinga">Jyotirlinga</option>
+            <option value="shakti-peetha">Shakti Peetha</option>
+            <option value="char-dham">Char Dham</option>
             <option value="unesco">UNESCO</option>
           </select>
         </div>
@@ -198,9 +200,13 @@
     <button class="chip active" data-filter="all">All</button>
     <button class="chip" data-filter="south">South India</button>
     <button class="chip" data-filter="north">North India</button>
+    <button class="chip" data-filter="east">East India</button>
+    <button class="chip" data-filter="west">West India</button>
     <button class="chip" data-filter="famous">Famous</button>
-    <button class="chip" data-filter="unesco">UNESCO</button>
     <button class="chip" data-filter="jyotirlinga">Jyotirlinga</button>
+    <button class="chip" data-filter="shakti-peetha">Shakti Peetha</button>
+    <button class="chip" data-filter="char-dham">Char Dham</button>
+    <button class="chip" data-filter="unesco">UNESCO</button>
   </div>
 </div>
 
@@ -213,7 +219,7 @@
 <section id="about" class="section" style="margin-top:-18px">
   <div style="border:1px solid var(--border); border-radius:18px; padding:22px; background:rgba(255,255,255,.04)">
     <h2 style="margin:4px 0 8px; font-family:'Playfair Display', serif; font-size:1.8rem">About Sacred Journeys</h2>
-    <p class="muted">We craft modern pilgrim experiences—meticulously researched, beautifully presented. Our mission is to preserve and share India's spiritual heritage through design, storytelling and accessible travel planning.</p>
+    <p class="muted">A Hindu‑only platform celebrating <em>Sanātana Dharma</em> through its temples, rituals and sacred art. Explore authentic histories, darshan timings, aarti highlights and travel tips for pilgrims.</p>
   </div>
 </section>
 
@@ -223,12 +229,12 @@
       <iframe title="India map" width="100%" height="360" style="border:0; filter:grayscale(.2) contrast(1.05)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684558.534770846!2d74.13!3d20.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIndia!5e0!3m2!1sen!2sin!4v1684930460000"></iframe>
     </div>
     <div style="border:1px solid var(--border); border-radius:18px; padding:18px; background:rgba(255,255,255,.04)">
-      <h3 style="margin:0 0 8px; font-family:'Playfair Display', serif; font-size:1.4rem">Plan smarter</h3>
-      <p class="muted">Use filters to shortlist temples by region and theme. Tap a card to view highlights, timings and quick links, then add to your wishlist.</p>
+      <h3 style="margin:0 0 8px; font-family:'Playfair Display', serif; font-size:1.4rem">Plan your yatra</h3>
+      <p class="muted">Filter by region and tradition (Jyotirlinga, Shakti Peetha, Char Dham). Tap a card for darshan info, aarti times and quick links.</p>
       <ul class="muted" style="line-height:1.9">
-        <li>Wishlist & favorites (heart icon)</li>
-        <li>Ratings snapshot & tags</li>
-        <li>Clean, responsive layout—Airbnb‑style</li>
+        <li>Darshan & aarti schedules</li>
+        <li>Prasad & dress code notes</li>
+        <li>Wishlist your pilgrimage circuit</li>
       </ul>
     </div>
   </div>
@@ -268,7 +274,7 @@
     </div>
     <div>
       <strong>Discover</strong>
-      <p class="muted">Trails • Festivals • Stories</p>
+      <p class="muted">Yatras • Utsavs • Temple lore</p>
     </div>
     <div>
       <strong>Company</strong>
@@ -303,42 +309,17 @@
 
 <script>
   const data = [
-    {
-      id:'brihadeeswarar',
-      title:'Brihadeeswarar Temple',
-      img:'https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg',
-      meta:['Tamil Nadu','Built 1010 CE','UNESCO'],
-      tags:['south','famous','unesco'],
-      rating:4.9,
-      link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple'
-    },
-    {
-      id:'kashi',
-      title:'Kashi Vishwanath',
-      img:'https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg',
-      meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'],
-      tags:['north','famous','jyotirlinga'],
-      rating:4.8,
-      link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple'
-    },
-    {
-      id:'meenakshi',
-      title:'Meenakshi Amman Temple',
-      img:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg',
-      meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'],
-      tags:['south','famous'],
-      rating:4.7,
-      link:'https://en.wikipedia.org/wiki/Meenakshi_Temple'
-    },
-    {
-      id:'kedarnath',
-      title:'Kedarnath Temple',
-      img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg',
-      meta:['Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],
-      tags:['north','jyotirlinga','famous'],
-      rating:4.9,
-      link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'
-    }
+    { id:'brihadeeswarar', title:'Brihadeeswarar Temple', img:'https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg', meta:['Thanjavur, Tamil Nadu','Built 1010 CE','UNESCO'], tags:['south','famous','unesco','hindu-temple'], rating:4.9, link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple' },
+    { id:'kashi', title:'Kashi Vishwanath', img:'https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg', meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'], tags:['north','famous','jyotirlinga','hindu-temple'], rating:4.8, link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple' },
+    { id:'meenakshi', title:'Meenakshi Amman Temple', img:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg', meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'], tags:['south','famous','hindu-temple'], rating:4.7, link:'https://en.wikipedia.org/wiki/Meenakshi_Temple' },
+    { id:'kedarnath', title:'Kedarnath Temple', img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg', meta:['Rudraprayag, Uttarakhand','Jyotirlinga','Himalayan pilgrimage'], tags:['north','jyotirlinga','famous','hindu-temple','char-dham'], rating:4.9, link:'https://en.wikipedia.org/wiki/Kedarnath_Temple' },
+    { id:'somnath', title:'Somnath Temple', img:'https://upload.wikimedia.org/wikipedia/commons/2/21/Somnath_temple.jpg', meta:['Veraval, Gujarat','First of 12 Jyotirlingas','Prabhas Patan'], tags:['west','jyotirlinga','famous','hindu-temple'], rating:4.8, link:'https://en.wikipedia.org/wiki/Somnath_temple' },
+    { id:'rameswaram', title:'Ramanathaswamy Temple', img:'https://upload.wikimedia.org/wikipedia/commons/6/6c/Ramanathaswamy_Temple_26.JPG', meta:['Rameswaram, Tamil Nadu','Jyotirlinga','Char Dham'], tags:['south','jyotirlinga','char-dham','hindu-temple'], rating:4.8, link:'https://en.wikipedia.org/wiki/Ramanathaswamy_Temple' },
+    { id:'badrinath', title:'Badrinath Temple', img:'https://upload.wikimedia.org/wikipedia/commons/1/14/Badrinath_Temple.jpg', meta:['Chamoli, Uttarakhand','Vaishnavite shrine','Char Dham'], tags:['north','char-dham','famous','hindu-temple'], rating:4.7, link:'https://en.wikipedia.org/wiki/Badrinath_Temple' },
+    { id:'dwarkadhish', title:'Dwarkadhish Temple', img:'https://upload.wikimedia.org/wikipedia/commons/9/9b/Dwarkadhish_Temple.jpg', meta:['Dwarka, Gujarat','Krishna temple','Char Dham'], tags:['west','char-dham','famous','hindu-temple'], rating:4.7, link:'https://en.wikipedia.org/wiki/Dwarkadhish_Temple,_Dwarka' },
+    { id:'jagannath', title:'Jagannath Temple, Puri', img:'https://upload.wikimedia.org/wikipedia/commons/2/2e/Jagannath_Temple_Puri.jpg', meta:['Puri, Odisha','Ratha Yatra','Char Dham'], tags:['east','char-dham','famous','hindu-temple'], rating:4.8, link:'https://en.wikipedia.org/wiki/Jagannath_Temple,_Puri' },
+    { id:'vaishno', title:'Vaishno Devi Mandir', img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Vaishno_Devi_Temple.jpg', meta:['Katra, Jammu & Kashmir','Shakti Peetha tradition','Trikuta hills'], tags:['north','shakti-peetha','famous','hindu-temple'], rating:4.7, link:'https://en.wikipedia.org/wiki/Vaishno_Devi' },
+    { id:'kamakhya', title:'Kamakhya Temple', img:'https://upload.wikimedia.org/wikipedia/commons/0/08/Kamakhya_Temple.jpg', meta:['Guwahati, Assam','Shakti Peetha','Nilachal Hill'], tags:['east','shakti-peetha','famous','hindu-temple'], rating:4.7, link:'https://en.wikipedia.org/wiki/Kamakhya_Temple' }
   ];
 
   const grid = document.getElementById('cardGrid');
