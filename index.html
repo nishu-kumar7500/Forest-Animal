@@ -8,31 +8,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
   :root{
-    --bg:#0b0b12;          
-    --surface:#0f1020;      
-    --brand:#8b5cf6;        
-    --brand-2:#f59e0b;      
-    --text:#0b1020;         
-    --muted:#47506a;        
-    --glass:rgba(15,16,32,0.06);
-    --border:rgba(15,16,32,0.12);
+    --bg:#0b0b12;          /* dark canvas behind glass */
+    --surface:#0f1020;      /* sections */
+    --brand:#8b5cf6;        /* violet */
+    --brand-2:#f59e0b;      /* amber */
+    --text:#f5f7fb;         /* main text */
+    --muted:#aab1c0;        /* secondary */
+    --glass:rgba(255,255,255,0.08);
+    --border:rgba(255,255,255,0.12);
     --ok:#22c55e; --warn:#f97316; --err:#ef4444;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0; 
-    font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
-    color:var(--text);
-
-    /* 🌟 Yellow background override 🌟 */
-    background:
-      radial-gradient(1200px 600px at 10% -20%, rgba(255,213,79,.35), transparent 60%),
-      radial-gradient(1000px 800px at 110% 20%, rgba(255,179,0,.28), transparent 60%),
-      linear-gradient(180deg,#fff8dc 0%, #ffe08a 100%);
-
-    overflow-x:hidden; 
-    scroll-behavior:smooth;
+    margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
+    background: radial-gradient(1200px 600px at 10% -20%, rgba(139,92,246,.25), transparent 60%),
+                radial-gradient(1000px 800px at 110% 20%, rgba(245,158,11,.18), transparent 60%),
+                linear-gradient(180deg,#0b0b12 0%, #121225 100%);
+    overflow-x:hidden; scroll-behavior:smooth;
   }
 
   /* ===== Header / Nav ===== */
@@ -69,7 +62,7 @@
   .search-card{margin-top:22px; display:grid; grid-template-columns: 1.1fr .9fr .8fr .6fr auto; gap:10px; padding:14px; border-radius:16px; background:rgba(255,255,255,.06); border:1px solid var(--border)}
   .field{display:flex; flex-direction:column; gap:6px}
   .label{font-size:.78rem; color:#c7ccda}
-  .input, select, .date{height:44px; padding:10px 12px; border-radius:10px; outline:0; border:1px solid var(--border); background:rgba(8,8,18,.06); color:var(--text)}
+  .input, select, .date{height:44px; padding:10px 12px; border-radius:10px; outline:0; border:1px solid var(--border); background:rgba(8,8,18,.6); color:var(--text)}
   .cta{height:44px; padding:0 18px; border-radius:12px; border:none; cursor:pointer; font-weight:700; color:white; background:linear-gradient(135deg, var(--brand-2), #f59e0b 60%); box-shadow:0 14px 28px rgba(245,158,11,.32)}
 
   .hero-art{position:relative; border-radius:22px; overflow:hidden; min-height:320px; border:1px solid var(--border)}
@@ -79,13 +72,13 @@
   /* ===== Filter bar ===== */
   .filter-bar{max-width:1180px; margin:28px auto 0; padding:0 24px}
   .chips{display:flex; gap:10px; flex-wrap:wrap}
-  .chip{padding:.6rem .9rem; border-radius:999px; border:1px solid var(--border); background:var(--glass); color:#333; font-weight:600; cursor:pointer}
+  .chip{padding:.6rem .9rem; border-radius:999px; border:1px solid var(--border); background:var(--glass); color:#d9def0; font-weight:600; cursor:pointer}
   .chip.active, .chip:hover{background:linear-gradient(135deg, rgba(139,92,246,.25), rgba(245,158,11,.2)); border-color:transparent}
 
   /* ===== Cards ===== */
   .section{max-width:1180px; margin:18px auto 70px; padding:0 24px}
   .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
-  .card{grid-column: span 4; border:1px solid var(--border); background:rgba(255,255,255,.7); border-radius:18px; overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease}
+  .card{grid-column: span 4; border:1px solid var(--border); background:rgba(255,255,255,.05); border-radius:18px; overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease}
   .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.35)}
   .media{position:relative; overflow:hidden; height:220px}
   .media img{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .5s ease}
@@ -98,10 +91,19 @@
   .tags{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
   .tag{padding:.3rem .55rem; border-radius:999px; background:rgba(139,92,246,.16); border:1px solid rgba(139,92,246,.3); font-size:.78rem}
   .actions-row{display:flex; justify-content:space-between; align-items:center; margin-top:12px}
-  .link{color:#333; text-decoration:none; font-weight:700}
+  .link{color:#cdd3e6; text-decoration:none; font-weight:700}
+
+  /* ===== Modal ===== */
+  .modal{position:fixed; inset:0; backdrop-filter:blur(10px); background:rgba(8,8,18,.65); display:none; align-items:center; justify-content:center; z-index:60}
+  .modal.show{display:flex}
+  .modal-card{width:min(940px, 92vw); background:#0f1326; border:1px solid var(--border); border-radius:20px; overflow:hidden; box-shadow:0 40px 80px rgba(0,0,0,.55)}
+  .modal-media{height:360px; position:relative}
+  .modal-media img{width:100%; height:100%; object-fit:cover}
+  .modal-body{padding:16px 18px 20px}
+  .modal-close{position:absolute; top:14px; right:14px; width:44px; height:44px; border-radius:12px; background:rgba(8,8,18,.65); border:1px solid var(--border); color:#fff; display:grid; place-items:center; cursor:pointer}
 
   /* ===== Footer ===== */
-  footer{border-top:1px solid var(--border); padding:34px 24px; background:rgba(255,255,255,.5)}
+  footer{border-top:1px solid var(--border); padding:34px 24px; background:rgba(255,255,255,.03)}
   .foot-wrap{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:24px}
   .logo-footer{display:flex; align-items:center; gap:.75rem}
   .muted{color:var(--muted)}
@@ -124,11 +126,10 @@
 </head>
 <body>
 
-<!-- 🔥 keep your same HTML content below 🔥 -->
 <header class="header">
   <nav class="nav">
     <a class="brand" href="#">
-      <span class="brand-logo"><i class="fa-solid fa-om"></i></span>
+      <span class="brand-logo"><i class="fa-solid fa-temple"></i></span>
       <span class="brand-title">Sacred Journeys</span>
     </a>
 
@@ -146,8 +147,305 @@
   </nav>
 </header>
 
-<!-- ✅ keep rest of your code same as before -->
-<!-- I didn’t touch your JS or modal code, just changed background theme to yellow. -->
+<section class="hero">
+  <div class="hero-wrap">
+    <div>
+      <p class="muted" style="font-weight:700; letter-spacing:.2em; text-transform:uppercase">Curated Temple Trails</p>
+      <h1 class="headline">Discover India's Divine Heritage, one temple at a time.</h1>
+      <p class="sub">Browse iconic shrines, sacred architecture and living traditions. Build your wishlist and plan immersive journeys inspired by history and devotion.</p>
 
+      <div class="search-card" role="search">
+        <div class="field">
+          <label class="label">Location / Temple</label>
+          <input class="input" id="q" placeholder="e.g., Varanasi or Meenakshi" />
+        </div>
+        <div class="field">
+          <label class="label">Region</label>
+          <select id="region">
+            <option value="all">All Regions</option>
+            <option value="north">North India</option>
+            <option value="south">South India</option>
+            <option value="east">East India</option>
+            <option value="west">West India</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label">Theme</label>
+          <select id="theme">
+            <option value="all">Any</option>
+            <option value="famous">Famous</option>
+            <option value="jyotirlinga">Jyotirlinga</option>
+            <option value="unesco">UNESCO</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label">Date</label>
+          <input class="date" type="date" />
+        </div>
+        <button class="cta" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> &nbsp;Explore</button>
+      </div>
+    </div>
+
+    <figure class="hero-art">
+      <img class="hero-img" alt="Temple collage" src="https://images.unsplash.com/photo-1603262110263-fb0112e7cc33?q=80&w=1600&auto=format&fit=crop"/>
+      <div class="hero-badge"><i class="fa-solid fa-award"></i> Handpicked & verified places</div>
+    </figure>
+  </div>
+</section>
+
+<div class="filter-bar">
+  <div class="chips" id="chips">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="south">South India</button>
+    <button class="chip" data-filter="north">North India</button>
+    <button class="chip" data-filter="famous">Famous</button>
+    <button class="chip" data-filter="unesco">UNESCO</button>
+    <button class="chip" data-filter="jyotirlinga">Jyotirlinga</button>
+  </div>
+</div>
+
+<main id="explore" class="section">
+  <div class="grid" id="cardGrid">
+    <!-- Cards injected by JS -->
+  </div>
+</main>
+
+<section id="about" class="section" style="margin-top:-18px">
+  <div style="border:1px solid var(--border); border-radius:18px; padding:22px; background:rgba(255,255,255,.04)">
+    <h2 style="margin:4px 0 8px; font-family:'Playfair Display', serif; font-size:1.8rem">About Sacred Journeys</h2>
+    <p class="muted">We craft modern pilgrim experiences—meticulously researched, beautifully presented. Our mission is to preserve and share India's spiritual heritage through design, storytelling and accessible travel planning.</p>
+  </div>
+</section>
+
+<section id="map" class="section">
+  <div style="display:grid; grid-template-columns:1.2fr .8fr; gap:16px">
+    <div style="border:1px solid var(--border); border-radius:18px; overflow:hidden; min-height:360px; background:#0c0f1f">
+      <iframe title="India map" width="100%" height="360" style="border:0; filter:grayscale(.2) contrast(1.05)" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684558.534770846!2d74.13!3d20.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIndia!5e0!3m2!1sen!2sin!4v1684930460000"></iframe>
+    </div>
+    <div style="border:1px solid var(--border); border-radius:18px; padding:18px; background:rgba(255,255,255,.04)">
+      <h3 style="margin:0 0 8px; font-family:'Playfair Display', serif; font-size:1.4rem">Plan smarter</h3>
+      <p class="muted">Use filters to shortlist temples by region and theme. Tap a card to view highlights, timings and quick links, then add to your wishlist.</p>
+      <ul class="muted" style="line-height:1.9">
+        <li>Wishlist & favorites (heart icon)</li>
+        <li>Ratings snapshot & tags</li>
+        <li>Clean, responsive layout—Airbnb‑style</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section" style="margin-top:-18px">
+  <div style="display:grid; grid-template-columns:.9fr 1.1fr; gap:16px">
+    <div style="border:1px solid var(--border); border-radius:18px; padding:18px; background:rgba(255,255,255,.04)">
+      <h2 style="margin:4px 0 10px; font-family:'Playfair Display', serif; font-size:1.6rem">Contact</h2>
+      <p class="muted"><i class="fa-solid fa-location-dot"></i> &nbsp;Delhi, India</p>
+      <p class="muted"><i class="fa-solid fa-phone"></i> &nbsp;+91‑9876543210</p>
+      <p class="muted"><i class="fa-solid fa-envelope"></i> &nbsp;info@sacredjourneys.com</p>
+      <div style="display:flex; gap:12px; margin-top:10px">
+        <a class="btn" href="https://www.instagram.com/yourpage" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a class="btn" href="https://www.linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+    <div style="border:1px solid var(--border); border-radius:18px; padding:18px; background:rgba(255,255,255,.04)">
+      <h3 style="margin:0 0 8px; font-family:'Playfair Display', serif">Newsletter</h3>
+      <p class="muted">Get monthly temple stories and curated trail ideas.</p>
+      <div class="newsletter">
+        <input class="input" placeholder="you@example.com" type="email" />
+        <button class="cta">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-wrap">
+    <div>
+      <div class="logo-footer">
+        <span class="brand-logo" style="width:34px;height:34px"></span>
+        <strong>Sacred Journeys</strong>
+      </div>
+      <p class="muted" style="margin-top:10px">© <span id="year"></span> Sacred Journeys. All rights reserved.</p>
+    </div>
+    <div>
+      <strong>Discover</strong>
+      <p class="muted">Trails • Festivals • Stories</p>
+    </div>
+    <div>
+      <strong>Company</strong>
+      <p class="muted">About • Careers • Press</p>
+    </div>
+    <div>
+      <strong>Support</strong>
+      <p class="muted">Help Center • Terms • Privacy</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== Modal ===== -->
+<div class="modal" id="modal">
+  <div class="modal-card">
+    <div class="modal-media">
+      <img id="modalImg" alt="Temple" />
+      <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+      <div class="rating" id="modalRating"></div>
+    </div>
+    <div class="modal-body">
+      <h3 id="modalTitle" style="margin:6px 0 4px; font-size:1.4rem"></h3>
+      <p class="muted" id="modalMeta"></p>
+      <div class="tags" id="modalTags" style="margin-top:10px"></div>
+      <div class="actions-row">
+        <a id="modalLink" class="link" target="_blank">Open in Wikipedia</a>
+        <button class="btn primary" id="wishlistBtn"><i class="fa-regular fa-heart"></i> &nbsp;Add to wishlist</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const data = [
+    {
+      id:'brihadeeswarar',
+      title:'Brihadeeswarar Temple',
+      img:'https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg',
+      meta:['Tamil Nadu','Built 1010 CE','UNESCO'],
+      tags:['south','famous','unesco'],
+      rating:4.9,
+      link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple'
+    },
+    {
+      id:'kashi',
+      title:'Kashi Vishwanath',
+      img:'https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg',
+      meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'],
+      tags:['north','famous','jyotirlinga'],
+      rating:4.8,
+      link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple'
+    },
+    {
+      id:'meenakshi',
+      title:'Meenakshi Amman Temple',
+      img:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg',
+      meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'],
+      tags:['south','famous'],
+      rating:4.7,
+      link:'https://en.wikipedia.org/wiki/Meenakshi_Temple'
+    },
+    {
+      id:'kedarnath',
+      title:'Kedarnath Temple',
+      img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg',
+      meta:['Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],
+      tags:['north','jyotirlinga','famous'],
+      rating:4.9,
+      link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'
+    }
+  ];
+
+  const grid = document.getElementById('cardGrid');
+  const chips = document.getElementById('chips');
+  const q = document.getElementById('q');
+  const region = document.getElementById('region');
+  const theme = document.getElementById('theme');
+  const searchBtn = document.getElementById('searchBtn');
+  const year = document.getElementById('year');
+  year.textContent = new Date().getFullYear();
+
+  const modal = document.getElementById('modal');
+  const modalImg = document.getElementById('modalImg');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalRating = document.getElementById('modalRating');
+  const modalTags = document.getElementById('modalTags');
+  const modalLink = document.getElementById('modalLink');
+  const modalClose = document.getElementById('modalClose');
+  const wishlistBtn = document.getElementById('wishlistBtn');
+
+  function renderCards(items){
+    grid.innerHTML = '';
+    items.forEach(item=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="media">
+          <img src="${item.img}" alt="${item.title}" loading="lazy"/>
+          <div class="rating"><i class="fa-solid fa-star"></i> ${item.rating.toFixed(1)}</div>
+          <button class="fav" aria-label="Add to favorites"><i class="fa-regular fa-heart"></i></button>
+        </div>
+        <div class="content">
+          <div class="title">${item.title}</div>
+          <div class="meta">${item.meta.map(m=>`<span>${m}</span>`).join('•')}</div>
+          <div class="tags">${item.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+          <div class="actions-row">
+            <a class="link" href="${item.link}" target="_blank">Learn more</a>
+            <button class="btn" data-id="${item.id}">Details</button>
+          </div>
+        </div>`;
+      grid.appendChild(card);
+
+      card.querySelector('.btn').addEventListener('click', ()=> openModal(item));
+      card.querySelector('.fav').addEventListener('click', (e)=>{
+        e.stopPropagation(); e.currentTarget.classList.toggle('active');
+        e.currentTarget.style.background = e.currentTarget.classList.contains('active') ? 'rgba(139,92,246,.25)' : 'rgba(8,8,18,.65)';
+      });
+    });
+  }
+
+  function filter(){
+    const text = q.value.trim().toLowerCase();
+    const r = region.value; const t = theme.value;
+    const items = data.filter(d=>{
+      const textOk = !text || d.title.toLowerCase().includes(text) || d.meta.join(' ').toLowerCase().includes(text);
+      const rOk = r==='all' || d.tags.includes(r);
+      const tOk = t==='all' || d.tags.includes(t);
+      return textOk && rOk && tOk;
+    });
+    renderCards(items);
+  }
+
+  chips.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.chip');
+    if(!btn) return;
+    chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    if(['north','south','famous','unesco','jyotirlinga','all'].includes(f)){
+      if(f==='north' || f==='south') region.value = f; else region.value = 'all';
+      if(['famous','unesco','jyotirlinga'].includes(f)) theme.value = f; else theme.value = 'all';
+      filter();
+    }
+  });
+  [q, region, theme].forEach(el=>el.addEventListener('input', filter));
+  searchBtn.addEventListener('click', filter);
+
+  function openModal(item){
+    modalImg.src = item.img;
+    modalTitle.textContent = item.title;
+    modalMeta.textContent = item.meta.join(' • ');
+    modalRating.innerHTML = `<i class=\'fa-solid fa-star\'></i> ${item.rating.toFixed(1)}`;
+    modalTags.innerHTML = item.tags.map(t=>`<span class="tag">${t}</span>`).join('');
+    modalLink.href = item.link;
+    modal.classList.add('show');
+  }
+  modalClose.addEventListener('click', ()=> modal.classList.remove('show'));
+  modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.classList.remove('show'); });
+  wishlistBtn.addEventListener('click', ()=>{ wishlistBtn.innerHTML = '<i class="fa-solid fa-heart"></i> &nbsp;Added'; });
+
+  // Mode toggle (simple demo)
+  const modeToggle = document.getElementById('modeToggle');
+  let light = false;
+  modeToggle.addEventListener('click', ()=>{
+    light = !light;
+    document.documentElement.style.setProperty('--bg', light ? '#f5f6fb' : '#0b0b12');
+    document.documentElement.style.setProperty('--surface', light ? '#ffffff' : '#0f1020');
+    document.documentElement.style.setProperty('--text', light ? '#0b1020' : '#f5f7fb');
+    document.documentElement.style.setProperty('--muted', light ? '#47506a' : '#aab1c0');
+    document.documentElement.style.setProperty('--glass', light ? 'rgba(15,16,32,0.06)' : 'rgba(255,255,255,0.08)');
+    document.documentElement.style.setProperty('--border', light ? 'rgba(15,16,32,0.12)' : 'rgba(255,255,255,0.12)');
+  });
+
+  // initial render
+  renderCards(data);
+  filter();
+</script>
 </body>
 </html>
