@@ -85,7 +85,7 @@
   /* ===== Cards ===== */
   .section{max-width:1180px; margin:18px auto 70px; padding:0 24px}
   .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
-  .card{grid-column: span 4; border:1px solid var(--border); background:rgba(255,255,255,.85); border-radius:18px; overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease; color:#3e2723}
+  .card{grid-column: span 4; border:1px solid var(--border); background:rgba(255,255,255,.85); border-radius:18px; overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease; color:#3e2723; cursor:pointer}
   .card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(0,0,0,.35)}
   .media{position:relative; overflow:hidden; height:220px}
   .media img{width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.02); transition:transform .5s ease}
@@ -178,7 +178,7 @@
         </div>
         <div class="field">
           <label class="label">Date</label>
-          <input class="date" type="date" />
+          <input class="date" type="date" id="dateFilter"/>
         </div>
         <button class="cta" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> &nbsp;Explore</button>
       </div>
@@ -196,9 +196,11 @@
     <button class="chip active" data-filter="all">All</button>
     <button class="chip" data-filter="south">South India</button>
     <button class="chip" data-filter="north">North India</button>
+    <button class="chip" data-filter="east">East India</button>
+    <button class="chip" data-filter="west">West India</button>
     <button class="chip" data-filter="famous">Famous</button>
-    <button class="chip" data-filter="unesco">UNESCO</button>
     <button class="chip" data-filter="jyotirlinga">Jyotirlinga</button>
+    <button class="chip" data-filter="unesco">UNESCO</button>
   </div>
 </div>
 
@@ -238,35 +240,153 @@
 </footer>
 
 <script>
+  // --------- DATA ----------
   const data = [
-    {id:'brihadeeswarar',title:'Brihadeeswarar Temple',img:'https://s7ap1.scene7.com/is/image/incredibleindia/1-brihadeeswarar-temple-thanjavur-tamil-nadu-attr-hero?qlt=82&ts=1742170442234',meta:['Tamil Nadu','Built 1010 CE','UNESCO'],tags:['south','famous','unesco'],rating:4.9,link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple'},
-    {id:'kashi',title:'Kashi Vishwanath',img:'https://www.pilgrimagetour.in/blog/wp-content/uploads/2023/10/How-to-Reach-Kashi-Vishwanath-Temple.jpg',meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'],tags:['north','famous','jyotirlinga'],rating:4.8,link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple'},
-    {id:'meenakshi',title:'Meenakshi Amman Temple',img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYmM5iH4DIB4AE64kj7C5zZntx-ZxKjkcprQ&s',meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'],tags:['south','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Meenakshi_Temple'},
-    {id:'kedarnath',title:'Kedarnath Temple',img:'https://uttarakhandtriptrek.com/wp-content/uploads/2023/11/Snapinsta.app_293175459_581754693537885_5742373109704896684_n_1024.jpg',meta:['Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],tags:['north','jyotirlinga','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'}
+    {id:'brihadeeswarar',title:'Brihadeeswarar Temple',img:'https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg',meta:['Thanjavur, Tamil Nadu','Built 1010 CE','UNESCO'],tags:['south','famous','unesco'],rating:4.9,link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple'},
+    {id:'kashi',title:'Kashi Vishwanath',img:'https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg',meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'],tags:['north','famous','jyotirlinga'],rating:4.8,link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple'},
+    {id:'meenakshi',title:'Meenakshi Amman Temple',img:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg',meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'],tags:['south','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Meenakshi_Temple'},
+    {id:'kedarnath',title:'Kedarnath Temple',img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg',meta:['Rudraprayag, Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],tags:['north','jyotirlinga','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'}
   ];
-  const grid=document.getElementById('cardGrid');const year=document.getElementById('year');year.textContent=new Date().getFullYear();
+
+  // --------- ELEMENTS ----------
+  const grid = document.getElementById('cardGrid');
+  const chips = document.getElementById('chips');
+  const q = document.getElementById('q');
+  const region = document.getElementById('region');
+  const theme = document.getElementById('theme');
+  const dateFilter = document.getElementById('dateFilter');
+  const searchBtn = document.getElementById('searchBtn');
+  const year = document.getElementById('year');
+  year.textContent = new Date().getFullYear();
+
+  // --------- RENDER ----------
   function renderCards(items){
-    grid.innerHTML='';items.forEach(item=>{
-      const card=document.createElement('article');
-      card.className='card';
-      card.innerHTML=`<div class="media">
+    grid.innerHTML = '';
+    if(items.length === 0){
+      grid.innerHTML = `<p class="muted" style="grid-column:1/-1;text-align:center">No temples match your filters.</p>`;
+      return;
+    }
+    items.forEach(item=>{
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.setAttribute('data-id', item.id);
+      card.setAttribute('tabindex','0'); // keyboard focus
+      card.innerHTML = `
+        <div class="media">
           <img src="${item.img}" alt="${item.title}" loading="lazy"/>
           <div class="rating"><i class="fa-solid fa-star"></i> ${item.rating.toFixed(1)}</div>
-          <button class="fav" aria-label="Add to favorites"><i class="fa-regular fa-heart"></i></button>
+          <button class="fav" aria-label="Add to favorites" title="Add to favorites"><i class="fa-regular fa-heart"></i></button>
         </div>
         <div class="content">
           <div class="title">${item.title}</div>
           <div class="meta">${item.meta.map(m=>`<span>${m}</span>`).join(' • ')}</div>
           <div class="tags">${item.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
           <div class="actions-row">
-            <a class="link" href="${item.link}" target="_blank">Learn more</a>
-            <button class="btn" data-id="${item.id}">Details</button>
+            <a class="link" href="${item.link}" target="_blank" rel="noopener">Learn more</a>
+            <button class="btn details-btn" data-id="${item.id}">Details</button>
           </div>
         </div>`;
+      // Click anywhere on the card to open the link (except the fav button)
+      card.addEventListener('click', (e)=>{
+        if(e.target.closest('.fav')) return; // ignore fav click
+        window.open(item.link, '_blank', 'noopener');
+      });
+      // Keyboard accessibility (Enter)
+      card.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter'){ window.open(item.link, '_blank', 'noopener'); }
+      });
+      // Details button -> open link too
+      card.querySelector('.details-btn').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        window.open(item.link, '_blank', 'noopener');
+      });
+      // Fav toggle (visual only)
+      card.querySelector('.fav').addEventListener('click', (e)=>{
+        e.stopPropagation();
+        e.currentTarget.classList.toggle('active');
+        e.currentTarget.style.background = e.currentTarget.classList.contains('active') ? 'rgba(255,111,0,.9)' : 'rgba(255,111,0,.7)';
+      });
+
       grid.appendChild(card);
     });
   }
+
+  // --------- FILTER LOGIC ----------
+  function currentFilters(){
+    return {
+      text: (q.value || '').trim().toLowerCase(),
+      region: region ? region.value : 'all',
+      theme: theme ? theme.value : 'all',
+      // date is present in UI but not used by data; kept for future extension
+    };
+  }
+
+  function applyFilters(){
+    const f = currentFilters();
+    const items = data.filter(d=>{
+      const textOk = !f.text ||
+        d.title.toLowerCase().includes(f.text) ||
+        d.meta.join(' ').toLowerCase().includes(f.text) ||
+        d.tags.join(' ').toLowerCase().includes(f.text);
+      const regionOk = f.region==='all' || d.tags.includes(f.region);
+      const themeOk = f.theme==='all' || d.tags.includes(f.theme);
+      return textOk && regionOk && themeOk;
+    });
+    renderCards(items);
+  }
+
+  // --------- CHIPS (TABS) ----------
+  chips.addEventListener('click', (e)=>{
+    const btn = e.target.closest('.chip');
+    if(!btn) return;
+    chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    btn.classList.add('active');
+
+    const f = btn.dataset.filter;
+    // If a region chip is clicked, set region; if a theme chip, set theme.
+    const regions = ['north','south','east','west'];
+    const themes  = ['famous','jyotirlinga','unesco'];
+    if(f==='all'){
+      region.value = 'all';
+      theme.value = 'all';
+    }else if(regions.includes(f)){
+      region.value = f;
+    }else if(themes.includes(f)){
+      theme.value = f;
+    }
+    // Re-apply
+    applyFilters();
+
+    // Scroll into view the explore section for better UX on mobile
+    document.getElementById('explore').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  // --------- SEARCH + INPUTS ----------
+  // small debounce for search typing
+  let t;
+  function debounceFilter(){
+    clearTimeout(t);
+    t = setTimeout(applyFilters, 200);
+  }
+  q.addEventListener('input', debounceFilter);
+  region.addEventListener('change', applyFilters);
+  theme.addEventListener('change', applyFilters);
+  if(dateFilter) dateFilter.addEventListener('change', applyFilters);
+  searchBtn.addEventListener('click', applyFilters);
+
+  // --------- MODE TOGGLE (optional visual demo) ----------
+  const modeToggle = document.getElementById('modeToggle');
+  let light = false;
+  modeToggle.addEventListener('click', ()=>{
+    light = !light;
+    // subtle contrast changes only (keep saffron bg)
+    document.documentElement.style.setProperty('--text', light ? '#1c120b' : '#2e1b0e');
+    document.documentElement.style.setProperty('--muted', light ? '#5a463a' : '#6a4a3c');
+  });
+
+  // --------- INIT ----------
   renderCards(data);
+  applyFilters();
 </script>
 </body>
 </html>
