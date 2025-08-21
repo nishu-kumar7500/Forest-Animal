@@ -8,33 +8,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 <style>
   :root{
-    --brand:#ff6f00;        /* saffron accent */
-    --brand-2:#f59e0b;      /* golden amber */
-    --text:#2e1b0e;         /* dark brown for main text */
-    --muted:#6a4a3c;        /* soft brown-gray */
-    --heading:#4b2e2e;      /* deep maroon for headings */
-    --glass:rgba(255,255,255,0.12);
-    --border:rgba(255,255,255,0.2);
+    --brand:#ff6f00; --brand-2:#f59e0b; --text:#2e1b0e; --muted:#6a4a3c;
+    --heading:#4b2e2e; --glass:rgba(255,255,255,0.12); --border:rgba(255,255,255,0.2);
   }
-
-  *{box-sizing:border-box}
-  html,body{height:100%}
+  *{box-sizing:border-box} html,body{height:100%}
   body{
-    margin:0; 
-    font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    color:var(--text);
-
-    /* 🌼 Saffron-inspired background */
+    margin:0; font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; color:var(--text);
     background:
       radial-gradient(1200px 600px at 10% -20%, rgba(255,140,0,0.35), transparent 60%),
       radial-gradient(1000px 800px at 110% 20%, rgba(255,94,0,0.28), transparent 60%),
       linear-gradient(180deg,#ff9933 0%, #ffb74d 60%, #ffe0b2 100%);
-
-    overflow-x:hidden; 
-    scroll-behavior:smooth;
+    overflow-x:hidden; scroll-behavior:smooth;
   }
-
-  /* ===== Header / Nav ===== */
   .header{position:sticky; top:0; z-index:50;}
   .nav{
     display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:1rem;
@@ -43,46 +28,36 @@
     border-bottom:1px solid var(--border);
   }
   .brand{display:flex; align-items:center; gap:.75rem; text-decoration:none}
-  .brand-logo{
-    width:38px;height:38px;border-radius:10px; display:grid; place-items:center;
+  .brand-logo{width:38px;height:38px;border-radius:10px; display:grid; place-items:center;
     background:conic-gradient(from 160deg, var(--brand), var(--brand-2));
-    box-shadow:0 6px 18px rgba(255,111,0,.35), inset 0 0 30px rgba(255,255,255,.08);
-    color:#fff;
-  }
+    box-shadow:0 6px 18px rgba(255,111,0,.35), inset 0 0 30px rgba(255,255,255,.08); color:#fff;}
   .brand-title{font-family:'Playfair Display', serif; font-size:1.4rem; letter-spacing:.2px; color:#fff}
-
   .nav-links{display:flex; gap:1rem; align-items:center}
   .nav-links a{color:#f5e3d3; text-decoration:none; padding:.55rem .85rem; border-radius:10px; font-weight:500}
   .nav-links a:hover{color:#fff; background:var(--glass)}
-
   .actions{display:flex; justify-content:end; gap:.6rem; align-items:center}
   .btn{padding:.65rem .95rem; border-radius:12px; border:1px solid var(--border); background:var(--glass); color:#fff; cursor:pointer; font-weight:600}
   .btn.primary{border-color:transparent; background:linear-gradient(135deg, var(--brand), #ff8f00 60%); box-shadow:0 12px 28px rgba(255,111,0,.35)}
   .btn:hover{transform:translateY(-1px); box-shadow:0 6px 14px rgba(0,0,0,.25)}
 
-  /* ===== Hero ===== */
   .hero{position:relative; padding:80px 24px 36px}
   .hero-wrap{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.1fr .9fr; gap:28px}
   .headline{font-family:'Playfair Display', serif; font-size:clamp(32px, 5vw, 58px); line-height:1.05; margin:.25rem 0 1rem; color:var(--heading)}
   .sub{color:var(--muted); font-size:1.1rem}
-
   .search-card{margin-top:22px; display:grid; grid-template-columns: 1.1fr .9fr .8fr .6fr auto; gap:10px; padding:14px; border-radius:16px; background:rgba(255,255,255,.2); border:1px solid var(--border)}
   .field{display:flex; flex-direction:column; gap:6px}
   .label{font-size:.78rem; color:#5d4037}
   .input, select, .date{height:44px; padding:10px 12px; border-radius:10px; outline:0; border:1px solid var(--border); background:rgba(255,255,255,.7); color:#3e2723}
   .cta{height:44px; padding:0 18px; border-radius:12px; border:none; cursor:pointer; font-weight:700; color:white; background:linear-gradient(135deg, #ff8f00, #ff6f00 70%); box-shadow:0 14px 28px rgba(255,111,0,.35)}
-
   .hero-art{position:relative; border-radius:22px; overflow:hidden; min-height:320px; border:1px solid var(--border)}
   .hero-img{width:100%; height:100%; object-fit:cover; filter:contrast(1.05) saturate(1.1)}
   .hero-badge{position:absolute; left:16px; bottom:16px; padding:10px 14px; border-radius:14px; background:rgba(74,20,7,.7); border:1px solid var(--border); display:flex; gap:8px; align-items:center; color:#fff}
 
-  /* ===== Filter bar ===== */
   .filter-bar{max-width:1180px; margin:28px auto 0; padding:0 24px}
   .chips{display:flex; gap:10px; flex-wrap:wrap}
   .chip{padding:.6rem .9rem; border-radius:999px; border:1px solid var(--border); background:rgba(255,255,255,.25); color:#3e2723; font-weight:600; cursor:pointer}
   .chip.active, .chip:hover{background:linear-gradient(135deg, rgba(255,111,0,.3), rgba(255,179,0,.25)); border-color:transparent}
 
-  /* ===== Cards ===== */
   .section{max-width:1180px; margin:18px auto 70px; padding:0 24px}
   .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:18px}
   .card{grid-column: span 4; border:1px solid var(--border); background:rgba(255,255,255,.85); border-radius:18px; overflow:hidden; position:relative; transition:transform .25s ease, box-shadow .25s ease; color:#3e2723; cursor:pointer}
@@ -100,7 +75,6 @@
   .actions-row{display:flex; justify-content:space-between; align-items:center; margin-top:12px}
   .link{color:#bf360c; text-decoration:none; font-weight:700}
 
-  /* ===== Footer ===== */
   footer{border-top:1px solid var(--border); padding:34px 24px; background:rgba(255,152,0,.15)}
   .foot-wrap{max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1.2fr 1fr 1fr 1fr; gap:24px}
   .logo-footer{display:flex; align-items:center; gap:.75rem}
@@ -108,7 +82,6 @@
   .newsletter{display:flex; gap:10px; margin-top:10px}
   .newsletter input{flex:1; background:rgba(255,255,255,.8); border:1px solid var(--border); border-radius:10px; padding:10px; color:#3e2723}
 
-  /* ===== Responsive ===== */
   @media (max-width:1024px){
     .hero-wrap{grid-template-columns:1fr}
     .search-card{grid-template-columns:1fr 1fr 1fr auto}
@@ -126,18 +99,10 @@
 
 <header class="header">
   <nav class="nav">
-    <a class="brand" href="#">
-      <span class="brand-logo"><i class="fa-solid fa-om"></i></span>
-      <span class="brand-title">Sacred Journeys</span>
-    </a>
-
+    <a class="brand" href="#"><span class="brand-logo"><i class="fa-solid fa-om"></i></span><span class="brand-title">Sacred Journeys</span></a>
     <div class="nav-links">
-      <a href="#explore">Explore</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#map">Map</a>
+      <a href="#explore">Explore</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#map">Map</a>
     </div>
-
     <div class="actions">
       <button class="btn" id="modeToggle" title="Toggle dark / light"><i class="fa-regular fa-sun"></i></button>
       <button class="btn primary">Sign in</button>
@@ -151,7 +116,6 @@
       <p class="muted" style="font-weight:700; letter-spacing:.2em; text-transform:uppercase">Curated Temple Trails</p>
       <h1 class="headline">Discover India's Divine Heritage, one temple at a time.</h1>
       <p class="sub">Browse iconic shrines, sacred architecture and living traditions. Build your wishlist and plan immersive journeys inspired by history and devotion.</p>
-
       <div class="search-card" role="search">
         <div class="field">
           <label class="label">Location / Temple</label>
@@ -218,34 +182,53 @@
 <footer>
   <div class="foot-wrap">
     <div>
-      <div class="logo-footer">
-        <span class="brand-logo" style="width:34px;height:34px"></span>
-        <strong style="color:var(--heading)">Sacred Journeys</strong>
-      </div>
+      <div class="logo-footer"><span class="brand-logo" style="width:34px;height:34px"></span><strong style="color:var(--heading)">Sacred Journeys</strong></div>
       <p class="muted" style="margin-top:10px">© <span id="year"></span> Sacred Journeys. All rights reserved.</p>
     </div>
-    <div>
-      <strong style="color:var(--heading)">Discover</strong>
-      <p class="muted">Trails • Festivals • Stories</p>
-    </div>
-    <div>
-      <strong style="color:var(--heading)">Company</strong>
-      <p class="muted">About • Careers • Press</p>
-    </div>
-    <div>
-      <strong style="color:var(--heading)">Support</strong>
-      <p class="muted">Help Center • Terms • Privacy</p>
-    </div>
+    <div><strong style="color:var(--heading)">Discover</strong><p class="muted">Trails • Festivals • Stories</p></div>
+    <div><strong style="color:var(--heading)">Company</strong><p class="muted">About • Careers • Press</p></div>
+    <div><strong style="color:var(--heading)">Support</strong><p class="muted">Help Center • Terms • Privacy</p></div>
   </div>
 </footer>
 
 <script>
   // --------- DATA ----------
+  // Note: placeholder images from picsum.photos; swap with real photos anytime.
+  const P = (seed) => `https://picsum.photos/seed/${encodeURIComponent(seed)}/800/560`;
+
   const data = [
+    // Existing
     {id:'brihadeeswarar',title:'Brihadeeswarar Temple',img:'https://upload.wikimedia.org/wikipedia/commons/3/3e/Brihadeeswarar_Temple_Tanjore.jpg',meta:['Thanjavur, Tamil Nadu','Built 1010 CE','UNESCO'],tags:['south','famous','unesco'],rating:4.9,link:'https://en.wikipedia.org/wiki/Brihadeeswarar_Temple'},
     {id:'kashi',title:'Kashi Vishwanath',img:'https://upload.wikimedia.org/wikipedia/commons/3/32/Kashi_Vishwanath_Temple.jpg',meta:['Varanasi, Uttar Pradesh','Jyotirlinga','On the Ganga'],tags:['north','famous','jyotirlinga'],rating:4.8,link:'https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple'},
     {id:'meenakshi',title:'Meenakshi Amman Temple',img:'https://upload.wikimedia.org/wikipedia/commons/9/9e/Meenakshi_Amman_temple_tower_view.jpg',meta:['Madurai, Tamil Nadu','Dravidian architecture','Goddess Meenakshi'],tags:['south','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Meenakshi_Temple'},
-    {id:'kedarnath',title:'Kedarnath Temple',img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg',meta:['Rudraprayag, Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],tags:['north','jyotirlinga','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'}
+    {id:'kedarnath',title:'Kedarnath Temple',img:'https://upload.wikimedia.org/wikipedia/commons/7/7a/Kedarnath_Temple_in_snow.jpg',meta:['Rudraprayag, Uttarakhand','Jyotirlinga','Himalayan pilgrimage'],tags:['north','jyotirlinga','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Kedarnath_Temple'},
+
+    // EAST INDIA
+    {id:'jagannath',title:'Jagannath Temple',img:P('Jagannath Puri'),meta:['Puri, Odisha','Chaar Dham','Rath Yatra'],tags:['east','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Jagannath_Temple,_Puri'},
+    {id:'konark',title:'Sun Temple, Konark',img:P('Konark Sun Temple'),meta:['Konark, Odisha','13th century','UNESCO'],tags:['east','unesco','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Konark_Sun_Temple'},
+    {id:'dakshineswar',title:'Dakshineswar Kali Temple',img:P('Dakshineswar Kali Temple'),meta:['Kolkata, West Bengal','Navaratna style'],tags:['east','famous'],rating:4.6,link:'https://en.wikipedia.org/wiki/Dakshineswar_Kali_Temple'},
+    {id:'mahabodhi',title:'Mahabodhi Temple',img:P('Mahabodhi Temple'),meta:['Bodh Gaya, Bihar','Buddhist pilgrimage','UNESCO'],tags:['east','unesco','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Mahabodhi_Temple'},
+    {id:'kamakhya',title:'Kamakhya Temple',img:P('Kamakhya Temple'),meta:['Guwahati, Assam','Shakti Peetha'],tags:['east','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Kamakhya_Temple'},
+
+    // WEST INDIA
+    {id:'somnath',title:'Somnath Temple',img:P('Somnath Temple'),meta:['Prabhas Patan, Gujarat','Jyotirlinga'],tags:['west','jyotirlinga','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Somnath_temple'},
+    {id:'dwarkadhish',title:'Dwarkadhish Temple',img:P('Dwarkadhish Dwarka'),meta:['Dwarka, Gujarat','Lord Krishna'],tags:['west','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Dwarkadhish_Temple,_Dwarka'},
+    {id:'siddhivinayak',title:'Shree Siddhivinayak',img:P('Siddhivinayak Mumbai'),meta:['Mumbai, Maharashtra','Ganesha temple'],tags:['west','famous'],rating:4.6,link:'https://en.wikipedia.org/wiki/Siddhivinayak_Temple,_Mumbai'},
+    {id:'trimbakeshwar',title:'Trimbakeshwar Temple',img:P('Trimbakeshwar Nashik'),meta:['Nashik, Maharashtra','Jyotirlinga'],tags:['west','jyotirlinga'],rating:4.7,link:'https://en.wikipedia.org/wiki/Trimbakeshwar_Shiva_Temple'},
+    {id:'bhimashankar',title:'Bhimashankar Temple',img:P('Bhimashankar Temple'),meta:['Pune district, Maharashtra','Jyotirlinga'],tags:['west','jyotirlinga'],rating:4.7,link:'https://en.wikipedia.org/wiki/Bhimashankar_Temple'},
+    {id:'ellora-kailasa',title:'Kailasa Temple, Ellora',img:P('Ellora Kailasa Temple'),meta:['Aurangabad, Maharashtra','Rock-cut','UNESCO'],tags:['west','unesco','famous'],rating:4.9,link:'https://en.wikipedia.org/wiki/Kailasa_Temple,_Ellora'},
+
+    // SOUTH (extra UNESCO/Jyotirlinga/Famous)
+    {id:'tirupati',title:'Tirumala Venkateswara',img:P('Tirupati Balaji Temple'),meta:['Tirupati, Andhra Pradesh','Vaishnavite shrine'],tags:['south','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Venkateswara_Temple,_Tirumala'},
+    {id:'mallikarjuna',title:'Mallikarjuna, Srisailam',img:P('Mallikarjuna Srisailam'),meta:['Kurnool, Andhra Pradesh','Jyotirlinga'],tags:['south','jyotirlinga'],rating:4.7,link:'https://en.wikipedia.org/wiki/Mallikarjuna_Jyotirlinga'},
+    {id:'shore-mahabalipuram',title:'Shore Temple, Mahabalipuram',img:P('Shore Temple Mahabalipuram'),meta:['Tamil Nadu','Pallava architecture','UNESCO'],tags:['south','unesco','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Group_of_Monuments_at_Mahabalipuram'},
+    {id:'hampi-virupaksha',title:'Virupaksha Temple, Hampi',img:P('Virupaksha Hampi'),meta:['Karnataka','Hampi monuments','UNESCO'],tags:['south','unesco','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Hampi'},
+
+    // NORTH/CENTRAL (extra UNESCO/Jyotirlinga/Famous)
+    {id:'khajuraho',title:'Khajuraho Temples',img:P('Khajuraho Temples'),meta:['Madhya Pradesh','Nagara style','UNESCO'],tags:['north','unesco','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Khajuraho_Group_of_Monuments'},
+    {id:'mahakaleshwar',title:'Mahakaleshwar Temple',img:P('Mahakaleshwar Ujjain'),meta:['Ujjain, MP','Jyotirlinga'],tags:['north','jyotirlinga','famous'],rating:4.8,link:'https://en.wikipedia.org/wiki/Mahakaleshwar_Jyotirlinga'},
+    {id:'nageshwar',title:'Nageshwar Temple',img:P('Nageshwar Jyotirlinga'),meta:['Near Dwarka, Gujarat','Jyotirlinga'],tags:['west','jyotirlinga'],rating:4.6,link:'https://en.wikipedia.org/wiki/Nageshvara_Jyotirlinga'},
+    {id:'vaishno-devi',title:'Vaishno Devi',img:P('Vaishno Devi Katra'),meta:['Katra, J&K','Shakti shrine'],tags:['north','famous'],rating:4.7,link:'https://en.wikipedia.org/wiki/Vaishno_Devi'}
   ];
 
   // --------- ELEMENTS ----------
@@ -270,7 +253,7 @@
       const card = document.createElement('article');
       card.className = 'card';
       card.setAttribute('data-id', item.id);
-      card.setAttribute('tabindex','0'); // keyboard focus
+      card.setAttribute('tabindex','0');
       card.innerHTML = `
         <div class="media">
           <img src="${item.img}" alt="${item.title}" loading="lazy"/>
@@ -286,27 +269,10 @@
             <button class="btn details-btn" data-id="${item.id}">Details</button>
           </div>
         </div>`;
-      // Click anywhere on the card to open the link (except the fav button)
-      card.addEventListener('click', (e)=>{
-        if(e.target.closest('.fav')) return; // ignore fav click
-        window.open(item.link, '_blank', 'noopener');
-      });
-      // Keyboard accessibility (Enter)
-      card.addEventListener('keydown', (e)=>{
-        if(e.key === 'Enter'){ window.open(item.link, '_blank', 'noopener'); }
-      });
-      // Details button -> open link too
-      card.querySelector('.details-btn').addEventListener('click', (e)=>{
-        e.stopPropagation();
-        window.open(item.link, '_blank', 'noopener');
-      });
-      // Fav toggle (visual only)
-      card.querySelector('.fav').addEventListener('click', (e)=>{
-        e.stopPropagation();
-        e.currentTarget.classList.toggle('active');
-        e.currentTarget.style.background = e.currentTarget.classList.contains('active') ? 'rgba(255,111,0,.9)' : 'rgba(255,111,0,.7)';
-      });
-
+      card.addEventListener('click', (e)=>{ if(e.target.closest('.fav')) return; window.open(item.link, '_blank', 'noopener'); });
+      card.addEventListener('keydown', (e)=>{ if(e.key === 'Enter'){ window.open(item.link, '_blank', 'noopener'); }});
+      card.querySelector('.details-btn').addEventListener('click', (e)=>{ e.stopPropagation(); window.open(item.link, '_blank', 'noopener'); });
+      card.querySelector('.fav').addEventListener('click', (e)=>{ e.stopPropagation(); e.currentTarget.classList.toggle('active'); e.currentTarget.style.background = e.currentTarget.classList.contains('active') ? 'rgba(255,111,0,.9)' : 'rgba(255,111,0,.7)'; });
       grid.appendChild(card);
     });
   }
@@ -317,10 +283,8 @@
       text: (q.value || '').trim().toLowerCase(),
       region: region ? region.value : 'all',
       theme: theme ? theme.value : 'all',
-      // date is present in UI but not used by data; kept for future extension
     };
   }
-
   function applyFilters(){
     const f = currentFilters();
     const items = data.filter(d=>{
@@ -337,49 +301,34 @@
 
   // --------- CHIPS (TABS) ----------
   chips.addEventListener('click', (e)=>{
-    const btn = e.target.closest('.chip');
-    if(!btn) return;
+    const btn = e.target.closest('.chip'); if(!btn) return;
     chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
     btn.classList.add('active');
 
     const f = btn.dataset.filter;
-    // If a region chip is clicked, set region; if a theme chip, set theme.
     const regions = ['north','south','east','west'];
     const themes  = ['famous','jyotirlinga','unesco'];
-    if(f==='all'){
-      region.value = 'all';
-      theme.value = 'all';
-    }else if(regions.includes(f)){
-      region.value = f;
-    }else if(themes.includes(f)){
-      theme.value = f;
-    }
-    // Re-apply
+    if(f==='all'){ region.value = 'all'; theme.value = 'all'; }
+    else if(regions.includes(f)){ region.value = f; }
+    else if(themes.includes(f)){ theme.value = f; }
     applyFilters();
-
-    // Scroll into view the explore section for better UX on mobile
     document.getElementById('explore').scrollIntoView({behavior:'smooth', block:'start'});
   });
 
   // --------- SEARCH + INPUTS ----------
-  // small debounce for search typing
   let t;
-  function debounceFilter(){
-    clearTimeout(t);
-    t = setTimeout(applyFilters, 200);
-  }
+  function debounceFilter(){ clearTimeout(t); t = setTimeout(applyFilters, 200); }
   q.addEventListener('input', debounceFilter);
   region.addEventListener('change', applyFilters);
   theme.addEventListener('change', applyFilters);
   if(dateFilter) dateFilter.addEventListener('change', applyFilters);
   searchBtn.addEventListener('click', applyFilters);
 
-  // --------- MODE TOGGLE (optional visual demo) ----------
+  // --------- MODE TOGGLE ----------
   const modeToggle = document.getElementById('modeToggle');
   let light = false;
   modeToggle.addEventListener('click', ()=>{
     light = !light;
-    // subtle contrast changes only (keep saffron bg)
     document.documentElement.style.setProperty('--text', light ? '#1c120b' : '#2e1b0e');
     document.documentElement.style.setProperty('--muted', light ? '#5a463a' : '#6a4a3c');
   });
